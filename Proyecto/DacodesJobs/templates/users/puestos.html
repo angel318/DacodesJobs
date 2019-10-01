@@ -26,7 +26,7 @@
       <p class="lead">{{puesto.descripcion | safe | truncatewords:"50"}}</p>
     </div>
     <div class="col-md-5">
-      <a href="{% url 'base:DetallePuesto' puesto.id %}">
+      <a href="{% url 'Puestos:DetallePuesto' puesto.id %}" class="post-sm-entry">
         <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto d-none d-md-block d-lg-block d-xl-block d-xl-none"  src="{{puesto.imagen_referencial.url}}" alt="" width="500" height="500">
       </a>
     </div>
@@ -55,11 +55,11 @@
       source : function(rq,add){
           var search=$("#puestos").val()
           $.ajax({
-            url: 'busqueda/',
+            url: '/Puestos/busqueda/',
             async:false,
             dataType:'json',
             type:'GET',
-            data:{'start':search,},
+            data:{'search':search,},
             success:function(data){
                 var suggestions = [];
 

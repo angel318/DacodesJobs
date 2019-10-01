@@ -20,7 +20,8 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include(('Modulos.Base.urls','base')))
+    path('',include(('Modulos.Base.urls','base'))),
+    path('Puestos/',include(('Modulos.Puestos.urls','Puestos')))
 ]
 
 if settings.DEBUG:

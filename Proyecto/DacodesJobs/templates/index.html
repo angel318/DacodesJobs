@@ -130,7 +130,7 @@
           {% for puesto in puestos %}
           <div class="row featurette">
             <div class="col-md-7">
-              <a href="{% url 'base:DetallePuesto' puesto.id %}">
+              <a href="{% url 'Puestos:DetallePuesto' puesto.id %}">
                 <h2 class="featurette-heading">
                     {{puesto.nombre}}
                   <span class="text-muted">{{puesto.salario}}</span>
@@ -139,7 +139,7 @@
               <p class="lead">{{puesto.descripcion | safe | truncatewords:"50"}}</p>
             </div>
             <div class="col-md-5">
-              <a href="{% url 'base:DetallePuesto' puesto.id %}" class="post-sm-entry d-none d-md-block d-lg-block d-xl-block d-xl-none">
+              <a href="{% url 'Puestos:DetallePuesto' puesto.id %}" class="post-sm-entry d-none d-md-block d-lg-block d-xl-block d-xl-none">
                 <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded"  src="{{puesto.imagen_referencial.url}}" alt="" width="500" height="500">
               </a>
             </div>
@@ -147,7 +147,7 @@
 
           <hr class="featurette-divider">
           {% endfor %}
-            <p class="text-center"><a class="btn btn-outline-primary" href="{% url 'base:Puestos' %}" role="button">Ver todos &raquo;</a></p>
+            <p class="text-center"><a class="btn btn-outline-primary" href="{% url 'Puestos:Puestos' %}" role="button">Ver todos &raquo;</a></p>
           {% endif %}
 
         </div><!-- /.container -->
