@@ -34,7 +34,7 @@ class Index(ListView):
             'empresa' : consultaDatosEmpresa(),
         }
 
-        return render(request, 'index.html', datos)
+        return render(request, 'users/index.html', datos)
 
 class Nosotros(View):
     def get(self,request,*args,**kwargs):
@@ -47,4 +47,4 @@ class Nosotros(View):
 ##Staff
 
 class StaffIndex(TemplateView):
-    template_name = 'Staff/index.html'
+    template_name = 'admin/index.html'
