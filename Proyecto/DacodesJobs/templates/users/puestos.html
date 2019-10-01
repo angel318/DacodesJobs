@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block titulo %} Puestos {% endblock titulo %}
+
+{% block cuerpo %}
+<div class="container mt-5">
+  <div class="row d-flex justify-content-between">
+    <h3 class="font-italic">Puesto publicados</h3>
+    <form method="post">
+      <div class="input-group mb-3">
+         {% csrf_token %}
+        {{form.nombre}}
+        <div class="input-group-append">
+          <button class="btn btn-sm btn-outline-primary" type="submit" id="button-addon2">Button</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <hr class="featurette-divider">
+  {% if puestos %}
+  {% for puesto in puestos %}
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">{{puesto.nombre}} <span class="text-muted">{{puesto.salario}}</span></h2>
+      <p class="lead">{{puesto.descripcion | safe | truncatewords:"50"}}</p>
+    </div>
+    <div class="col-md-5">
+      <a href="{% url 'base:DetallePuesto' puesto.id %}">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto d-none d-md-block d-lg-block d-xl-block d-xl-none"  src="{{puesto.imagen_referencial.url}}" alt="" width="500" height="500">
+      </a>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+  {% endfor %}
+  {% endif %}
+  <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+
+{% endblock cuerpo %}
+
+
+{% block extracss %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{% endblock extracss%}
+
+{% block extrajs %}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script>
+  $( function() {
+    $( "#puestos" ).autocomplete({
+      minLenght : 3,
+      source : function(rq,add){
+          var search=$("#puestos").val()
+          $.ajax({
+            url: 'busqueda/',
+            async:false,
+            dataType:'json',
+            type:'GET',
+            data:{'start':search,},
+            success:function(data){
+                var suggestions = [];
+
+                $.each(data,function(index, objeto){
+                  suggestions.push(objeto.nombre);
+                });
+                console.log(suggestions)
+                add(suggestions);
+            },
+            error:function(err){
+              alert(err)
+            }
+          });
+      }
+    });
+  });
+  </script>
+{% endblock extrajs%}
