@@ -1,7 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from django.views.generic import ListView, View, TemplateView
-import random
 #MODELOS
 from .models import *
 from Modulos.Puestos.forms import *
@@ -19,10 +17,10 @@ def consultaDatosEmpresa():
 class Index(ListView):
     def get(self,request,*args,**kwargs):
 
-        puestos = list(Puestos.objects.filter(
+        puestos = Puestos.objects.filter(
             estatus = True,
             disponible = True
-        ))[:1]
+        )[:1]
 
         areas = list(AreasTrabajo.objects.filter(
                     estatus = True,

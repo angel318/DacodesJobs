@@ -4,32 +4,9 @@ from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpRe
 import json
 from .models import *
 from Modulos.Base.models import *
+from Modulos.Base.views import consultaDatosEmpresa
 from Modulos.AreasTrabajo.models import *
 from .forms import *
-
-def consultaDatosEmpresa():
-    try:
-        return DatosEmpresa.objects.get()
-    except:
-        return None
-
-#Puesto publicado
-class PuestoDetalles(View):
-    def get(self,request,pk,*args,**kwargs):
-        puesto = Puestos.objects.get(id = pk)
-
-        otrosPuestos = list(Puestos.objects.filter(
-            estatus = True,
-            disponible = True,
-        ).exclude(id=pk))[:5]
-
-        datos = {
-            'puesto' : puesto,
-            'empresa' : consultaDatosEmpresa(),
-            'otrosPuestos':otrosPuestos
-        }
-
-        return render(request,'users/puesto_detalles.html',datos)
 
 #Todos los puestos
 class PuestosPublicados(ListView):
@@ -39,10 +16,6 @@ class PuestosPublicados(ListView):
             estatus = True,
             disponible = True
         ))
-
-        areas = AreasTrabajo.objects.all().filter(
-            estatus = True
-        ).values_list('nombre',flat = True).count()
 
         form = BuscadorForm()
 
@@ -70,6 +43,25 @@ class PuestosPublicados(ListView):
                 'form':form,
             }
             return render(request,'users/puestos.html',datos)
+
+#Puesto publicado
+class PuestoDetalles(View):
+    def get(self,request,pk,*args,**kwargs):
+        puesto = Puestos.objects.get(id = pk)
+
+        otrosPuestos = list(Puestos.objects.filter(
+            estatus = True,
+            disponible = True,
+        ).exclude(id=pk))[:5]
+
+        datos = {
+            'puesto' : puesto,
+            'empresa' : consultaDatosEmpresa(),
+            'otrosPuestos':otrosPuestos
+        }
+
+        return render(request,'users/puesto_detalles.html',datos)
+
 #Buscador
 def Busqueda(request):
     data_json = None
