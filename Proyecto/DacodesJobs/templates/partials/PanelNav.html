@@ -1,9 +1,7 @@
 {% load staticfiles %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="{% url 'base:Index' %}">
-    <img src="{% static 'images/logo.png' %}" class="img-fluid" width="150" alt="{{empresa.nombre}}">
-  </a>
+  <button class="btn btn-dark border border-primary" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,15 +9,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'base:Index' %}">Inicio</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'Puestos:Puestos' %}">Puestos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'base:Nosotros' %}">Nosotros</a>
-      </li>
+      
     </ul>
     <div class="my-2 my-lg-0">
       <ul class="navbar-nav mr-auto">

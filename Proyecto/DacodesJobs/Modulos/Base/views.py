@@ -44,5 +44,5 @@ class Nosotros(View):
 
 ##Staff
 
-class StaffIndex(TemplateView):
-    template_name = 'admin/index.html'
+class PanelIndex(TemplateView):
+    template_name = 'panel/index.html'
