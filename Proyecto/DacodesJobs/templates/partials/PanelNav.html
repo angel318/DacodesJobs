@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <button class="btn btn-dark border border-primary" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="btn btn-light" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,13 +9,21 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      
+
     </ul>
     <div class="my-2 my-lg-0">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'base:Index' %}"><i class="fas fa-user fa-2x"></i><span class="sr-only">(current)</span></a>
-        </li>
+        <div class="dropdown">
+          <!-- <img src="{% static 'images/person_1.jpg' %}" class="img-fluid rounded-circle" width="50"> -->
+          <button class="btn btn-outline-secondary dropdown-toggle text-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Usuario
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Opcion 1</a>
+            <a class="dropdown-item" href="#">Opcion 2</a>
+            <a class="dropdown-item" href="#">Opcion 3</a>
+          </div>
+        </div>
       </ul>
     </div>
   </div>

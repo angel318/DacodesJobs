@@ -1,0 +1,74 @@
+{% extends 'panel/index.html' %}
+{% load staticfiles %}
+{% block titulo %} Areas de trabajo {% endblock titulo %}
+
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="#">Inicio</a></li>
+    <li class="breadcrumb-item text-capitalize" aria-current="page">Areas de Trabajo</li>
+    <li class="breadcrumb-item text-capitalize" aria-current="page">Listado</li>
+  </ol>
+</nav>
+{% endblock breadcrumb %}
+
+
+{% block cuerpo %}
+<div class="container mt-1">
+  {% if areas %}
+  <div class="card">
+  <div class="card-header">
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-between">
+        <span><i class="fa fa-bars"></i> Puestos Vacantes Publicados</span>
+        <button class="btn btn-light" type="button" name="button"><i class="fa fa-plus-circle"></i> Nuevo</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Salario</th>
+            <th scope="col">Contrato</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for area in areas %}
+          <tr>
+            <th scope="row">{{area.id}}</th>
+            <td><a href="{% url 'Puestos:DetallePuesto' puesto.id %}">{{area.nombre}}</a></td>
+            <td>{{area.salario}}</td>
+            <td>{{area.contrato}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+  {% else %}
+  <div class="row d-flex justify-content-center align-self-center">
+    <div>holamundo</div>
+  </div>
+
+  {% endif %}
+  <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+
+{% endblock cuerpo %}
+
+
+{% block extracss %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{% endblock extracss%}
+
+{% block extrajs %}
+
+{% endblock extrajs%}

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap-Yeti.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
@@ -25,7 +25,7 @@
   </head>
   <body>
 
-  <div class="site-wrap" style="background-color: #f0f0f0;">
+  <div class="site-wrap" style="background-color: #e4e5e6;">
 
     <div class="d-flex" id="wrapper">
       <!-- Sidebar -->
@@ -38,20 +38,24 @@
       <div id="page-content-wrapper">
         {% include "partials/PanelNav.html" %}
 
+        <main>
+          {% block breadcrumb %}
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="#">Inicio</a></li>
+            </ol>
+          </nav>
+          {% endblock breadcrumb %}
 
-          <div class="container-fluid mt-4">
-            {% block body %}
+          {% block cuerpo %}
 
-            {% endblock body %}
+          {% endblock cuerpo %}
+        </main>
 
-          </div>
       </div>
       <!-- /#page-content-wrapper -->
     </div>
 
-    <footer>
-      {% include 'partials/footer.html' %}
-    </footer>
   </div>
 
   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Modulos.Puestos',
     'Modulos.AreasTrabajo',
     'Modulos.Empleados',
+    'Modulos.Panel',
     'ckeditor'
 ]
 

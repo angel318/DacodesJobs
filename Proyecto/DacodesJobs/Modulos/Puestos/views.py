@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView,ListView,UpdateView,CreateView,DeleteView,View
-from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse
 import json
 from .models import *
 from Modulos.Base.models import *
@@ -85,3 +85,11 @@ def Busqueda(request):
 
     mimetype = "application/json"
     return HttpResponse(data_json,mimetype)
+
+#VISTAS DE ADMIN
+
+class AdminListPuestos(ListView):
+    model = Puestos
+    template_name = 'panel/Puestos/puestos.html'
+    context_object_name = 'puestos'
+    queryset = Puestos.objects.filter(estatus = True)

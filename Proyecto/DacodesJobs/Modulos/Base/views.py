@@ -40,9 +40,3 @@ class Nosotros(View):
             'empresa' : consultaDatosEmpresa(),
         }
         return render(request, 'users/nosotros.html', datos)
-
-
-##Staff
-
-class PanelIndex(TemplateView):
-    template_name = 'panel/index.html'

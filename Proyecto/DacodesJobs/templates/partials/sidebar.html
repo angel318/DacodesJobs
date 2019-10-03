@@ -6,31 +6,23 @@
   </a>
 </div>
 <div class="list-group list-group-flush bg-dark">
-  <div class="container list-group-item bg-dark">
-      <form class="form-inline my-2 my-lg-0">
-          <div class="input-group">
-              <input type="text" class="form-control bg-secondary border-primary text-light" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
-              <div class="input-group-append">
-                  <button class="btn btn-secondary border-primary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
-              </div>
-          </div>
-      </form>
-  </div>
+  <a class="list-group-item list-group-item-action bg-dark text-light" href="{% url 'Panel:PanelIndex' %}">
+      <i class="fa fa-home text-info"></i> Inicio
+  </a>
 
-  <a class="list-group-item list-group-item-action bg-dark text-light" href="">
-      <i class="fa fa-tachometer-alt"></i> Inicio
+ <strong class="list-group-item bg-dark text-light text-uppercase">Configuraciones</strong>
+
+  <a class="list-group-item list-group-item-action bg-dark text-light" href="{% url 'Panel:PanelAreasTrabajo' %}">
+      <i class="fa fa-network-wired text-info"></i> Areas de Trabajo
   </a>
   <a class="list-group-item list-group-item-action bg-dark text-light" href="">
-      <i class="fa fa-network-wired"></i> Areas de Trabajo
+      <i class="fa fa-building text-info"></i> Datos de la empresa
   </a>
   <a class="list-group-item list-group-item-action bg-dark text-light" href="">
-      <i class="fa fa-building"></i> Datos de la empresa
+      <i class="fa fa-users text-info"></i> Empleados
   </a>
-  <a class="list-group-item list-group-item-action bg-dark text-light" href="">
-      <i class="fa fa-users"></i> Empleados
-  </a>
-  <a class="list-group-item list-group-item-action bg-dark text-light" href="">
-      <i class="fa fa-id-card"></i> Puestos Vacantes
+  <a class="list-group-item list-group-item-action bg-dark text-light" href="{% url 'Panel:PanelPuestosPublicados' %}">
+      <i class="fa fa-id-card text-info"></i> Puestos Vacantes
   </a>
 
 </div>
