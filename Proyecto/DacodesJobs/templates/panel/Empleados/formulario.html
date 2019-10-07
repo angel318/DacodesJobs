@@ -3,7 +3,7 @@
 {% block titulo %} Areas de trabajo {% endblock titulo %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="{% url 'Panel:PanelPuestosListar' %}">Puestos</a></li>
+  <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="{% url 'Panel:PanelEmpleadosListar' %}">Empleados</a></li>
   {% if object %}
     <li class="breadcrumb-item text-capitalize" aria-current="page">Actualizar</li>
     <li class="breadcrumb-item text-capitalize" aria-current="page">{{object.nombre | truncatewords:"4"}}</li>
@@ -16,8 +16,8 @@
 {% block card-header %}
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
-      <span><i class="fa fa-bars"></i> Formulario de Puestos Vacantes Publicados</span>
-      <a href="{% url 'Panel:PanelPuestosCrear' %}" class="btn btn-light"><i class="fa fa-plus-circle"></i> Nuevo</a>
+      <span><i class="fa fa-bars"></i> Formulario de Empleados </span>
+      <a href="{% url 'Panel:PanelEmpleadosCrear' %}" class="btn btn-light"><i class="fa fa-plus-circle"></i> Nuevo</a>
     </div>
   </div>
 {% endblock card-header %}
@@ -44,16 +44,16 @@
 
   <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
-    <div class="form-group">
-      <div class="custom-control custom-switch">
-        {{ form.disponible }}
-        <label class="custom-control-label" for="customSwitch1">{{ form.disponible.label }}</label>
-      </div>
-    </div>
     <div class="form-group row">
       <label for="text-input" class="col-lg-2 col-form-label">{{ form.nombre.label }}</label>
       <div class="col-lg-10">
         {{ form.nombre }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.direccion.label }}</label>
+      <div class="col-lg-10">
+        {{ form.direccion }}
       </div>
     </div>
     <div class="form-group row">
@@ -75,33 +75,15 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.descripcion.label }}</label>
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.fecha_nacimiento.label }}</label>
       <div class="col-lg-10">
-        {{ form.descripcion }}
+        {{ form.fecha_nacimiento }}
       </div>
     </div>
     <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.requisitos.label }}</label>
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.puesto.label }}</label>
       <div class="col-lg-10">
-        {{ form.requisitos }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.deseable.label }}</label>
-      <div class="col-lg-10">
-        {{ form.deseable }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.funciones.label }}</label>
-      <div class="col-lg-10">
-        {{ form.funciones }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.imagen_referencial.label }}</label>
-      <div class="col-lg-10">
-        {{ form.imagen_referencial }}
+        {{ form.puesto }}
       </div>
     </div>
     <div class="form-group row">
@@ -111,8 +93,3 @@
     </div>
   </form>
 {% endblock card-body %}
-
-{% block extrajs %}
-  <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-  <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
-{% endblock extrajs %}

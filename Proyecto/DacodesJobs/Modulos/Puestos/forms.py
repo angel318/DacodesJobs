@@ -20,7 +20,7 @@ class BuscadorForm(forms.ModelForm):
 class PuestosForm(forms.ModelForm):
     class Meta:
         model = Puestos
-        fields = ['disponible','nombre','salario','jornada','contrato','imagen_referencial','descripcion','requisitos','deseable','funciones']
+        fields = ['disponible','nombre','salario','jornada','contrato','imagen_referencial','descripcion','requisitos','deseable']
         labels = {
             'nombre':'Nombre del puesto',
             'salario':'Salario del puesto',
@@ -30,7 +30,6 @@ class PuestosForm(forms.ModelForm):
             'descripcion':'Descripción del Puestos',
             'requisitos':'Requisitos del Puesto',
             'deseable':'Aptitudes Deseables',
-            'funciones':'Funciones a Desempeñar',
         }
         widgets = {
             'disponible': forms.CheckboxInput(

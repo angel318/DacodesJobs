@@ -31,7 +31,7 @@
           {% for area in areas %}
           <tr>
             <th>{{area.id}}</th>
-            <td><a href="">{{area.nombre}}</a></td>
+            <td><a href="{% url 'Panel:PanelAreasActualizar' area.id %}">{{area.nombre}}</a></td>
             <td>{{area.jefe}}</td>
           </tr>
           {% endfor %}

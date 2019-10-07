@@ -12,7 +12,6 @@ class Puestos(ModeloBase):
     descripcion = RichTextField()
     requisitos = RichTextField()
     deseable = RichTextField()
-    funciones = RichTextField()
 
     class Meta:
         verbose_name = 'Puesto'

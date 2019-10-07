@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,ListView,UpdateView,CreateView,DeleteView,View
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import *
 from .forms import *
 from django.urls import reverse_lazy
