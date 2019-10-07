@@ -7,6 +7,7 @@ from Modulos.Base.models import *
 from Modulos.Base.views import consultaDatosEmpresa
 from Modulos.AreasTrabajo.models import *
 from .forms import *
+from django.urls import reverse_lazy
 
 #Todos los puestos
 class PuestosPublicados(ListView):
@@ -88,8 +89,20 @@ def Busqueda(request):
 
 #VISTAS DE ADMIN
 
-class AdminListPuestos(ListView):
+class PanelListPuestos(ListView):
     model = Puestos
-    template_name = 'panel/Puestos/puestos.html'
+    template_name = 'panel/Puestos/listado.html'
     context_object_name = 'puestos'
     queryset = Puestos.objects.filter(estatus = True)
+
+class PanelCreatePuestos(CreateView):
+    model = Puestos
+    form_class = PuestosForm
+    template_name = 'panel/Puestos/formulario.html'
+    success_url = reverse_lazy('Panel:PanelPuestosListar')
+
+class PanelUpdatePuestos(UpdateView):
+    model = Puestos
+    form_class = PuestosForm
+    template_name = 'panel/Puestos/formulario.html'
+    success_url = reverse_lazy('Panel:PanelPuestosListar')

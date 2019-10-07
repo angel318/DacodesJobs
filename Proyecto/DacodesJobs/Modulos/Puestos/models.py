@@ -3,7 +3,7 @@ from Modulos.Base.models import ModeloBase
 from ckeditor.fields import RichTextField
 
 class Puestos(ModeloBase):
-    disponible = models.BooleanField('Disponible', default = True)
+    disponible = models.BooleanField('Disponible', default = False)
     nombre = models.CharField('Nombre del puesto', max_length = 200, null = False, blank = False)
     salario = models.CharField('Salario', max_length = 200, null = False, blank = False)
     jornada = models.CharField('Jornada', max_length = 200, null = False, blank = False)

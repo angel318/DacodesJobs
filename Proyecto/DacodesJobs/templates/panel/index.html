@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <html lang="es">
   <head>
-    <title>{% block titulo %} DjangoJobs{% endblock titulo %}</title>
+    <title>{% block titulo %} DacodesJobs {% endblock titulo %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -38,24 +38,32 @@
       <div id="page-content-wrapper">
         {% include "partials/PanelNav.html" %}
 
-        <main>
-          {% block breadcrumb %}
+
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="#">Inicio</a></li>
+              {% block breadcrumb %}
+              {% endblock breadcrumb %}
             </ol>
           </nav>
-          {% endblock breadcrumb %}
 
-          {% block cuerpo %}
+          <div class="container mb-3">
+            <div class="card">
+              <div class="card-header">
+                {% block card-header %}
+                Inicio
+                {% endblock card-header %}
+              </div>
+              <div class="card-body">
+                {% block card-body %}
 
-          {% endblock cuerpo %}
-        </main>
-
+                {% endblock card-body %}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- /#page-content-wrapper -->
-    </div>
-
   </div>
 
   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
