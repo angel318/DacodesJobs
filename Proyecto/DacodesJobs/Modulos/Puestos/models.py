@@ -17,5 +17,9 @@ class Puestos(ModeloBase):
         verbose_name = 'Puesto'
         verbose_name_plural = 'Puestos'
 
+    def delete(self, *args, **kwargs):
+        self.imagen_referencial.delete()
+        super().delete(*args, **kwargs)
+
     def __str__(self):
         return self.nombre

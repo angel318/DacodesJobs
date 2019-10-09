@@ -3,7 +3,7 @@
 {% block titulo %} Puestos {% endblock titulo %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item text-capitalize" aria-current="page">Datos de la Empresa</li>
+  <li class="breadcrumb-item text-capitalize" aria-current="page">Puestos</li>
   <li class="breadcrumb-item text-capitalize" aria-current="page">Listado</li>
 {% endblock breadcrumb %}
 
@@ -11,8 +11,8 @@
 {% block card-header %}
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
-      <span><i class="fa fa-bars"></i> Datos de la Empresa</span>
-      <a href="{% url 'Panel:PuestosCrear' %}" class="btn btn-light" type="button" name="button"><i class="fa fa-plus-circle"></i> Nuevo</a>
+      <span><i class="fa fa-bars"></i> Puestos Vacantes Publicados</span>
+      <a href="{% url 'Panel:PanelPuestosCrear' %}" class="btn btn-light" type="button" name="button"><i class="fa fa-plus-circle"></i> Nuevo</a>
     </div>
   </div>
 {% endblock card-header %}
@@ -35,44 +35,21 @@
           {% for puesto in puestos %}
           <tr>
             <th scope="row">{{puesto.id}}</th>
-            <td><a href="{% url 'Panel:PuestosActualizar' puesto.id %}">{{puesto.nombre}}</a></td>
+            <td><a href="{% url 'Panel:PanelPuestosActualizar' puesto.id %}">{{puesto.nombre}}</a></td>
             <td>{{puesto.salario}}</td>
             <td>{{puesto.contrato}}</td>
             <td>
               {% if puesto.disponible %}
-                <span class="badge badge-primary">Disponible</span>
+                <span class="badge badge-pill badge-primary">Disponible</span>
               {% else %}
-                <span class="badge badge-danger">Ocupado</span>
+                <span class="badge badge-pill badge-danger">Ocupado</span>
               {% endif %}
             </td>
-            <td><a href="{% url 'Panel:PuestosEliminar' puesto.id %}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a></td>
+            <td><a href="{% url 'Panel:PanelPuestosEliminar' puesto.id %}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
-      {% if is_paginated %}
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            {% if page_obj.has_previous %}
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-              <li class="page-item disabled"><span>&laquo;</span></li>
-            {% endif %}
-            {% for i in paginator.page_range %}
-              {% if page_obj.number == i %}
-                <li class="page-item active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-              {% else %}
-                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-              {% endif %}
-            {% endfor %}
-            {% if page_obj.has_next %}
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-            {% else %}
-              <li class="page-item disabled"><span>&raquo;</span></li>
-            {% endif %}
-          </ul>
-        </nav>
-      {% endif %}
     </div>
   {% else %}
     <div class="container">

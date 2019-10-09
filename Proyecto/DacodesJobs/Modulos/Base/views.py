@@ -24,7 +24,7 @@ class Index(ListView):
 
         areas = list(AreasTrabajo.objects.filter(
                     estatus = True,
-        ))
+        ).order_by('nombre'))
 
         datos = {
             'puestos' : puestos,

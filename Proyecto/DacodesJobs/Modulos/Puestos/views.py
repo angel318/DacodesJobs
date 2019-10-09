@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,ListView,UpdateView,CreateView,DeleteView,View
+from django.views.generic import ListView,UpdateView,CreateView,DeleteView, View
 from django.http import HttpResponse
 import json
 from .models import *
@@ -93,16 +93,22 @@ class PanelListPuestos(ListView):
     model = Puestos
     template_name = 'panel/Puestos/listado.html'
     context_object_name = 'puestos'
-    queryset = Puestos.objects.filter(estatus = True)
+    paginate_by = 10
+    queryset = Puestos.objects.filter(estatus = True).order_by('nombre')
 
 class PanelCreatePuestos(CreateView):
     model = Puestos
     form_class = PuestosForm
     template_name = 'panel/Puestos/formulario.html'
-    success_url = reverse_lazy('Panel:PanelPuestosListar')
+    success_url = reverse_lazy('Panel:PuestosListar')
 
 class PanelUpdatePuestos(UpdateView):
     model = Puestos
     form_class = PuestosForm
     template_name = 'panel/Puestos/formulario.html'
-    success_url = reverse_lazy('Panel:PanelPuestosListar')
+    success_url = reverse_lazy('Panel:PuestosListar')
+
+class PanelDeletePuestos(DeleteView):
+    model = Puestos
+    template_name = 'panel/Puestos/eliminar.html'
+    success_url = reverse_lazy('Panel:PuestosListar')

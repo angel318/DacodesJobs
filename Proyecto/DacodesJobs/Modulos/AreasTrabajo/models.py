@@ -11,5 +11,9 @@ class AreasTrabajo(ModeloBase):
         verbose_name = 'Area de trabajo'
         verbose_name_plural = 'Areas de trabajo'
 
+    def delete(self, *args, **kwargs):
+        self.imagen_referencial.delete()
+        super().delete(*args, **kwargs)
+
     def __str__(self):
         return self.nombre
