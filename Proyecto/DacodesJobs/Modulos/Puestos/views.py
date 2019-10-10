@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import ListView,UpdateView,CreateView,DeleteView, View
-from django.http import HttpResponse
-import json
 from .models import *
 from Modulos.Base.models import *
 from Modulos.Base.views import consultaDatosEmpresa
 from Modulos.AreasTrabajo.models import *
 from .forms import *
 from django.urls import reverse_lazy
+from .serializers import PuestosSerializer
+from rest_framework.generics import ListAPIView
 
 #Todos los puestos
 class PuestosPublicados(ListView):
@@ -63,29 +63,15 @@ class PuestoDetalles(View):
 
         return render(request,'users/puesto_detalles.html',datos)
 
-#Buscador
-def Busqueda(request):
-    data_json = None
-    if request.is_ajax:
-        search = request.GET.get('search','')
+#Buscador API
+class Buscador(ListAPIView):
+    serializer_class = PuestosSerializer
 
+    def get_queryset(self):
+        search = self.request.GET.get('search','')
         puestos = Puestos.objects.filter(nombre__icontains=search)
+        return puestos
 
-        results = []
-
-        for puesto in puestos:
-            puesto_json={}
-            puesto_json['id'] = puesto.id
-            puesto_json['nombre'] = puesto.nombre
-            results.append(puesto_json)
-
-        data_json = json.dumps(results)
-        print(data_json)
-    else:
-        data_jason = 'fail'
-
-    mimetype = "application/json"
-    return HttpResponse(data_json,mimetype)
 
 #VISTAS DE ADMIN
 

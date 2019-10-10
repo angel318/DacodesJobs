@@ -4,6 +4,6 @@ from .views import *
 
 urlpatterns = [
     path('',  PuestosPublicados.as_view(), name = 'Puestos'),
-    path('busqueda/', Busqueda, name='Busqueda'),
     path('<int:pk>/', PuestoDetalles.as_view(), name = 'DetallePuesto'),
+    path('busqueda/', Buscador.as_view(), name='Busqueda'),
 ]

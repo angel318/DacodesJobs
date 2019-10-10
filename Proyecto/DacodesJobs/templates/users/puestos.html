@@ -56,7 +56,6 @@
           var search=$("#puestos").val()
           $.ajax({
             url: '/Puestos/busqueda/',
-            async:false,
             dataType:'json',
             type:'GET',
             data:{'search':search,},
