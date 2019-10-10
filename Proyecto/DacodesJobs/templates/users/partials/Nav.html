@@ -12,13 +12,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'base:Index' %}">Inicio</a>
+        <a class="nav-link" href="{% url 'base:Index' %}"><i class="fa fa-home"></i> Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'Puestos:Puestos' %}">Puestos</a>
+        <a class="nav-link" href="{% url 'Puestos:Puestos' %}"><i class="fa fa-building"></i> Puestos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'base:Nosotros' %}">Nosotros</a>
+        <a class="nav-link" href="{% url 'AreasTrabajo:Areas' %}"><i class="fa fa-network-wired"></i> Areas de Trabajo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'base:Nosotros' %}"><i class="fa fa-briefcase"></i> Nosotros</a>
       </li>
     </ul>
     <div class="my-2 my-lg-0">

@@ -5,6 +5,19 @@ from .forms import *
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 
+#Areas de trabajo
+class Areas(ListView):
+    def get(self,request,*args,**kwargs):
+        areas = list(AreasTrabajo.objects.filter(
+                    estatus = True,
+        ).order_by('nombre'))
+
+        datos = {
+            "areas" : areas
+        }
+
+        return render(request, 'users/areas.html', datos)
+
 class PanelListAreas(ListView):
     model = AreasTrabajo
     template_name = 'panel/AreasTrabajo/listado.html'

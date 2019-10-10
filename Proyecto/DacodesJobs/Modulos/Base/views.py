@@ -24,7 +24,7 @@ class Index(ListView):
 
         areas = list(AreasTrabajo.objects.filter(
                     estatus = True,
-        ).order_by('nombre'))
+        ).order_by('nombre'))[:3]
 
         datos = {
             'puestos' : puestos,
@@ -34,6 +34,8 @@ class Index(ListView):
 
         return render(request, 'users/index.html', datos)
 
+
+#Informacion de la empresa
 class Nosotros(View):
     def get(self,request,*args,**kwargs):
         datos = {

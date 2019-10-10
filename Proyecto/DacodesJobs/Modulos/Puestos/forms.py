@@ -72,9 +72,4 @@ class PuestosForm(forms.ModelForm):
                     'id':'imagen_referencial'
                 }
             ),
-            'descripcion': forms.TextInput(
-                attrs = {
-                    'class':'form-control',
-                }
-            ),
         }

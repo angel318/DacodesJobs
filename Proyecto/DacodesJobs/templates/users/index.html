@@ -26,7 +26,7 @@
 
   <div class="site-wrap" style="background-color: #f0f0f0;">
     <header class="site-navbar" role="banner">
-      {% include 'partials/Nav.html' %}
+      {% include 'users/partials/Nav.html' %}
     </header>
 
     {% block cuerpo %}
@@ -79,37 +79,16 @@
         </div>
 
         <div class="container mt-5">
-          <!-- Three columns of text below the carousel -->
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-4">
-              <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-              <h2>Heading</h2>
-              <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-              <p><a class="btn btn-outline-primary" href="#" role="button">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-              <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-              <h2>Heading</h2>
-              <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-              <p><a class="btn btn-outline-primary" href="#" role="button">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-              <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-              <h2>Heading</h2>
-              <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-              <p><a class="btn btn-outline-primary" href="#" role="button">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-          </div><!-- /.row -->
-
           {% if areas %}
           <div class="py-5">
             <div class="row">
               <div class="col-md-12">
-                <div class="rounded border p-4 border-secondary">
+                <h1 class="display-4 mb-3 text-center">Areas de Trabajo</h1>
+                <div class="rounded border p-4 border-secondary bg-light">
                   <div class="row align-items-stretch">
                     {% for area in areas %}
-                    <div class="col-sm-6 col-md-4 col-lg-3 mb-1">
-                      <a href="#" class="d-flex post-sm-entry">
+                    <div class="col-sm-6 col-md-4 col-lg-4 mb-1">
+                      <a class="d-flex post-sm-entry">
                         <figure class="mr-3 mb-0"><img src="{{ area.imagen_referencial.url }}" alt="Image" class="rounded"></figure>
                         <div>
                           <span class="post-category bg-success text-white m-0 mb-2">{{area.jefe}}</span>
@@ -120,33 +99,36 @@
                     {% endfor %}
                   </div>
                 </div>
+                <p class="text-center mt-3"><a class="btn btn-outline-primary" href="{% url 'AreasTrabajo:Areas' %}" role="button">Ver todos &raquo;</a></p>
               </div>
             </div>
           </div>
           {% endif %}
 
-          <hr class="featurette-divider">
           {% if puestos %}
-          {% for puesto in puestos %}
-          <div class="row featurette">
-            <div class="col-md-7">
-              <a href="{% url 'Puestos:DetallePuesto' puesto.id %}">
-                <h2 class="featurette-heading">
-                    {{puesto.nombre}}
-                  <span class="text-muted">{{puesto.salario}}</span>
-                </h2>
-              </a>
-              <p class="lead">{{puesto.descripcion | safe | truncatewords:"50"}}</p>
-            </div>
-            <div class="col-md-5">
-              <a href="{% url 'Puestos:DetallePuesto' puesto.id %}" class="post-sm-entry d-none d-md-block d-lg-block d-xl-block d-xl-none">
-                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded"  src="{{puesto.imagen_referencial.url}}" alt="" width="500" height="500">
-              </a>
-            </div>
-          </div>
+            {% for puesto in puestos %}
+              <h1 class="display-4 mb-3 text-center">Puestos Disponibles</h1>
+              <hr class="featurette-divider">
 
-          <hr class="featurette-divider">
-          {% endfor %}
+              <div class="row featurette">
+                <div class="col-md-7">
+                  <a href="{% url 'Puestos:DetallePuesto' puesto.id %}">
+                    <h2 class="featurette-heading">
+                        {{puesto.nombre}}
+                      <span class="text-muted">{{puesto.salario}}</span>
+                    </h2>
+                  </a>
+                  <p class="lead">{{puesto.descripcion | safe | truncatewords:"50"}}</p>
+                </div>
+                <div class="col-md-5">
+                  <a href="{% url 'Puestos:DetallePuesto' puesto.id %}" class="post-sm-entry d-none d-md-block d-lg-block d-xl-block d-xl-none">
+                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded"  src="{{puesto.imagen_referencial.url}}" alt="" width="500" height="500">
+                  </a>
+                </div>
+              </div>
+
+              <hr class="featurette-divider">
+            {% endfor %}
             <p class="text-center"><a class="btn btn-outline-primary" href="{% url 'Puestos:Puestos' %}" role="button">Ver todos &raquo;</a></p>
           {% endif %}
 
@@ -155,7 +137,7 @@
       </main>
     {% endblock cuerpo %}
     <footer>
-      {% include 'partials/footer.html' %}
+      {% include 'users/partials/footer.html' %}
     </footer>
   </div>
 

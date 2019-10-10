@@ -21,8 +21,10 @@ from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(('Modulos.Base.urls','base'))),
+    path('AreasDeTrabajo/',include(('Modulos.AreasTrabajo.urls','AreasTrabajo'))),
     path('Puestos/',include(('Modulos.Puestos.urls','Puestos'))),
-    path('Panel/',include(('Modulos.Panel.urls','Panel')))
+    path('Panel/',include(('Modulos.Panel.urls','Panel'))),
+    path('Postularce/',include(('Modulos.Candidatos.urls','Candidatos'))),
 ]
 
 if settings.DEBUG:

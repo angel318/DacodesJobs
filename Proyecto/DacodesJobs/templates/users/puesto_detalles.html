@@ -56,7 +56,7 @@
             <p class="">{{puesto.salario}}</p>
         </div>
         <div class="text-center">
-          <button class="btn btn-danger text-center btn-block" type="button" name="button">Postularte</button>
+          <a href="{% url 'Candidatos:Candidatos' puesto.id %}" class="btn btn-danger text-center btn-block">Postularte</a>
         </div>
       </div>
 

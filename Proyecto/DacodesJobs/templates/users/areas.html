@@ -1,0 +1,35 @@
+{% extends 'users/index.html' %}
+{% load staticfiles %}
+{% block titulo %} Areas de Trabajo {% endblock titulo %}
+
+{% block cuerpo %}
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Areas de Trabajo</h1>
+      <p class="lead text-muted">Contamos con diversos servicios que se ajustan perfectamente a tus necesidades.</p>
+    </div>
+  </section>
+  <div class="container mt-5">
+    <div class="row">
+      {% if areas %}
+        {% for area in areas %}
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm rounded">
+              <img class="bd-placeholder-img card-img-top rounded-top" src="{{area.imagen_referencial.url}}" width="100%" height="300">
+              <div class="card-body">
+                <div class="row d-flex justify-content-between mr-1 ml-1">
+                  <p class="card-text font-weight-bold">{{area.nombre}}</p>
+                  <p class="card-text">Jefe: {{area.jefe}}</p>
+                </div>
+                <p class="card-text">{{area.descripcion | safe}}</p>
+                <div class="d-flex justify-content-end align-items-center">
+                  <small class="text-muted">{{area.fecha_creacion}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+{% endblock cuerpo %}

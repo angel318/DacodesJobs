@@ -72,7 +72,6 @@ class Buscador(ListAPIView):
         puestos = Puestos.objects.filter(nombre__icontains=search)
         return puestos
 
-
 #VISTAS DE ADMIN
 
 class PanelListPuestos(ListView):

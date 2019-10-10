@@ -4,7 +4,7 @@ from .models import AreasTrabajo
 class AreasForm(forms.ModelForm):
     class Meta:
         model = AreasTrabajo
-        fields = ('nombre','jefe','imagen_referencial')
+        fields = ('nombre','jefe','descripcion','imagen_referencial')
 
         widgets = {
             'nombre':forms.TextInput(
