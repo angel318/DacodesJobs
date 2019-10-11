@@ -1,28 +1,28 @@
 {% load staticfiles %}
 
 <div class="sidebar-heading bg-dark" style="color:#789cad;">
-  <a class="navbar-brand" href="{% url 'base:Index' %}">
+  <a class="navbar-brand" href="{% url 'Panel:Index' %}">
     <img src="{% static 'images/logo.png' %}" class="img-fluid" width="150" alt="{{empresa.nombre}}">
   </a>
 </div>
 <div class="list-group list-group-flush bg-dark">
   <a class="list-group-item list-group-item-action bg-dark text-light" href="{% url 'Panel:Index' %}">
-      <i class="fa fa-home text-info"></i> Inicio
+      <i class="fa fa-home text-primary"></i> Inicio
   </a>
 
  <strong class="list-group-item bg-dark text-light text-uppercase"><i class="fa fa-filter"></i> Opciones</strong>
 
   <a class="list-group-item list-group-item-action bg-dark text-light" href="{% url 'Panel:AreasListar' %}">
-      <i class="fa fa-network-wired text-info"></i> Areas de Trabajo
+      <i class="fa fa-network-wired text-primary"></i> Areas de Trabajo
   </a>
   <a class="list-group-item list-group-item-action bg-dark text-light" href="">
-      <i class="fa fa-building text-info"></i> Datos de la empresa
+      <i class="fa fa-building text-primary"></i> Datos de la empresa
   </a>
   <a class="list-group-item list-group-item-action bg-dark text-light" href="{% url 'Panel:EmpleadosListar' %}">
-      <i class="fa fa-users text-info"></i> Empleados
+      <i class="fa fa-users text-primary"></i> Empleados
   </a>
   <a class="list-group-item list-group-item-action bg-dark text-light" href="{% url 'Panel:PuestosListar' %}">
-      <i class="fa fa-id-card text-info"></i> Puestos Vacantes
+      <i class="fa fa-id-card text-primary"></i> Puestos Vacantes
   </a>
 
 </div>

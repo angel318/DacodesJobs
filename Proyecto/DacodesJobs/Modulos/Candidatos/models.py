@@ -11,7 +11,7 @@ class Candidatos(ModeloBase):
     apellidos = models.CharField('Apellidos', max_length = 50, null = False, blank = False)
     telefono = models.CharField('Teléfono', max_length = 20, null = True, blank = True)
     email = models.EmailField('Correo electrónico', max_length = 200, null = True, blank = True)
-    curriculum = models.FileField('Curriculum', null = True, blank = True , upload_to = 'Candidatos/', validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+    curriculum = models.FileField('Curriculum', null = True, blank = True , upload_to = 'Candidatos/')
 
     class Meta:
         verbose_name = 'Candidato'

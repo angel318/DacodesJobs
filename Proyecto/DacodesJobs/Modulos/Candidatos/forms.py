@@ -31,6 +31,13 @@ class CandidatosForm(forms.ModelForm):
                     'id':'telefono'
                 }
             ),
+            'id_puesto': forms.TextInput(
+                attrs = {
+                    'class':'form-control',
+                    'placeholder':'Ingrese su telefono',
+                    'id':'id_puesto'
+                }
+            ),
             'email': forms.EmailInput(
                 attrs = {
                     'class':'form-control',

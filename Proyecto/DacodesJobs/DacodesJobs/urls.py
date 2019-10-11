@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path,include,re_path
 from django.conf import settings
 from django.views.static import serve
+from django.contrib.auth.views import LoginView,logout_then_login
+from django.contrib.auth.decorators import login_required
+from Modulos.Base.views import Login,logoutUsurio
+from Modulos.Panel.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +29,8 @@ urlpatterns = [
     path('Puestos/',include(('Modulos.Puestos.urls','Puestos'))),
     path('Panel/',include(('Modulos.Panel.urls','Panel'))),
     path('Postularce/',include(('Modulos.Candidatos.urls','Candidatos'))),
+    path('accounts/login/',Login.as_view(),name='Login'),
+    path('logout/',login_required(logoutUsurio), name = 'logout'),
 ]
 
 if settings.DEBUG:
