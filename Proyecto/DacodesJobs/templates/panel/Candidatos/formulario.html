@@ -1,0 +1,95 @@
+{% extends 'panel/index.html' %}
+{% load staticfiles %}
+{% block titulo %} Areas de trabajo {% endblock titulo %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="{% url 'Panel:EmpleadosListar' %}">Empleados</a></li>
+  {% if object %}
+    <li class="breadcrumb-item text-capitalize" aria-current="page">Actualizar</li>
+    <li class="breadcrumb-item text-capitalize" aria-current="page">{{object.nombre | truncatewords:"4"}}</li>
+  {% else %}
+    <li class="breadcrumb-item text-capitalize" aria-current="page">Crear</li>
+  {% endif %}
+
+{% endblock breadcrumb %}
+
+{% block card-header %}
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-between">
+      <span><i class="fa fa-bars"></i> Formulario de Empleados </span>
+      <a href="{% url 'Panel:EmpleadosCrear' %}" class="btn btn-light"><i class="fa fa-plus-circle"></i> Nuevo</a>
+    </div>
+  </div>
+{% endblock card-header %}
+
+{% block card-body %}
+
+  {% if form.errors %}
+   <div class="alert alert-light">
+     <h4 class="text-primary font-weight-bold"><i class="fa fa-exclamation-triangle text-warning"></i> Por favor corrige los siguientes errores</h4>
+     <ul>
+       {% for field in form %}
+         {% if field.errors %}
+           {% for error in field.errors %}
+             <li class="text-secondary font-weight-bold font-italic">{{ error|escape }}</li>
+           {% endfor %}
+         {% endif %}
+       {% endfor %}
+     </ul>
+     {% if form.non_field_errors %}
+       {{ form.non_field_errors }}
+     {% endif %}
+   </div>
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="form-group row">
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.nombre.label }}</label>
+      <div class="col-lg-10">
+        {{ form.nombre }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.direccion.label }}</label>
+      <div class="col-lg-10">
+        {{ form.direccion }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.salario.label }}</label>
+      <div class="col-lg-10">
+        {{ form.salario }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.jornada.label }}</label>
+      <div class="col-lg-10">
+        {{ form.jornada }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.contrato.label }}</label>
+      <div class="col-lg-10">
+        {{ form.contrato }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.fecha_nacimiento.label }}</label>
+      <div class="col-lg-10">
+        {{ form.fecha_nacimiento }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-lg-2 col-form-label">{{ form.puesto.label }}</label>
+      <div class="col-lg-10">
+        {{ form.puesto }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="container d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary btn-lg border-primary"><i class="far fa-save"></i> Guardar Información</button>
+      </div>
+    </div>
+  </form>
+{% endblock card-body %}

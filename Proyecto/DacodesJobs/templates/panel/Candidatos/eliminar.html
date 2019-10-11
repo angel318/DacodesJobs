@@ -1,0 +1,28 @@
+{% extends 'panel/index.html' %}
+{% load staticfiles %}
+{% block titulo %} Emmpleados {% endblock titulo %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="{% url 'Panel:EmpleadosListar' %}">Empleados</a></li>
+  <li class="breadcrumb-item text-capitalize" aria-current="page">Eliminar</li>
+  <li class="breadcrumb-item text-capitalize" aria-current="page">{{object.nombre | truncatewords:"4"}}</li>
+{% endblock breadcrumb %}
+
+{% block card-body %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 d-flex align-self-center justify-content-center">
+      <div class="">
+        <span class="h1 display-3"><strong><i class="fa fa-exclamation-circle text-warning"></i> Alerta!</strong></span>
+        <p class="display-5 text-primary"><strong><i class="fa fa-database"></i> Está a punto de eliminar el registro: {{object}}</strong></p>
+      </div>
+    </div>
+    <div class="col-lg-6 d-flex align-self-center justify-content-center">
+      <form method="post" class="container">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-lg btn-block"><i class="far fa-trash-alt"></i> Confirmar Eliminación</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock card-body %}

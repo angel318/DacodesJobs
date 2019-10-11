@@ -1,0 +1,77 @@
+{% extends 'panel/index.html' %}
+{% load staticfiles %}
+{% block titulo %} Candidatos {% endblock titulo %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item text-capitalize" aria-current="page">Candiatos</li>
+  <li class="breadcrumb-item text-capitalize" aria-current="page">Listado</li>
+{% endblock breadcrumb %}
+
+{% block card-header %}
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-between">
+      <span><i class="fa fa-bars"></i> Candidatos Postulados</span>
+    </div>
+  </div>
+{% endblock card-header %}
+
+{% block card-body %}
+  {% if candidatos %}
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for candiato in candidatos %}
+          <tr>
+            <th>{{candiato.id}}</th>
+            <td><a href="">{{candiato.nombre}}</a></td>
+            <td><a href="{% url 'Panel:CandidatosEliminar' candidato.id %}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if is_paginated %}
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            {% if page_obj.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="page-item disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+              {% if page_obj.number == i %}
+                <li class="page-item active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="page-item disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        </nav>
+      {% endif %}
+    </div>
+  {% else %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex align-self-center justify-content-center">
+          <div class="">
+            <span class="h1 display-3"><strong><i class="fa fa-exclamation-circle text-warning"></i> Ups!</strong></span>
+            <p class="display-5 text-primary"><strong><i class="fa fa-database"></i> Sin información desponible</strong></p>
+          </div>
+        </div>
+        <div class="col-lg-6 d-flex align-self-center justify-content-center">
+            <img src="{% static 'images/close.gif' %}" class="img-fluid" width="70%">
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock card-body %}

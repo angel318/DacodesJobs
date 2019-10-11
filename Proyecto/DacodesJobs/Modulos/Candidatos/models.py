@@ -1,10 +1,7 @@
 from django.db import models
 from Modulos.Base.models import ModeloBase
 from Modulos.Puestos.models import Puestos
-from ckeditor.fields import RichTextField
-from django.core.validators import FileExtensionValidator
 
-# Create your models here.
 class Candidatos(ModeloBase):
     id_puesto = models.ForeignKey(Puestos,on_delete=models.CASCADE)
     nombre = models.CharField('Nombre del candidato', max_length = 50, null = False, blank = False)

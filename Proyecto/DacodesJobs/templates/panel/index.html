@@ -59,7 +59,7 @@
                     <div class="container-fluid">
                       <div class="header text-center">
                         <h1 class="header-title">
-                          Welcome back, NOMBRE DE USUARIO!
+                          Welcome back, {{user.username | upper}}!
                         </h1>
                   		  <p class="header-subtitle">You have 24 new messages and 5 new notifications.</p>
                       </div>
@@ -108,7 +108,7 @@
                 												</div>
                 											</div>
                 											<div class="col-8 align-self-center text-right">
-                												<h2 class="text-white">2562</h2>
+                												<h2 class="text-white">{{empleadosCount}}</h2>
                 											</div>
                 										</div>
                 									</div>
@@ -125,7 +125,41 @@
                 												</div>
                 											</div>
                 											<div class="col-8 align-self-center text-right">
-                												<h2 class="text-white">2562</h2>
+                												<h2 class="text-white">{{candidatosCount}}</h2>
+                											</div>
+                										</div>
+                									</div>
+                								</div>
+                							</div>
+                              <div class="col-sm-6">
+                                <div class="card flex-fill bg-danger text-white mb-3">
+                									<div class="card-body py-2">
+                                    <h6 class="card-title text-white mb-4">Areas Disponibles</h6>
+                										<div class="row no-gutters">
+                											<div class="col-4 align-self-center text-left">
+                												<div class="icon icon-primary">
+                													<i class="align-middle fa fa-network-wired fa-4x"></i>
+                												</div>
+                											</div>
+                											<div class="col-8 align-self-center text-right">
+                												<h2 class="text-white">{{puestosCount}}</h2>
+                											</div>
+                										</div>
+                									</div>
+                								</div>
+                							</div>
+                              <div class="col-sm-6">
+                                <div class="card flex-fill bg-warning text-white mb-3">
+                									<div class="card-body py-2">
+                                    <h6 class="card-title text-white mb-4">Puestos Disponibles</h6>
+                										<div class="row no-gutters">
+                											<div class="col-4 align-self-center text-left">
+                												<div class="icon icon-primary">
+                													<i class="align-middle fa fa-clipboard-list fa-4x"></i>
+                												</div>
+                											</div>
+                											<div class="col-8 align-self-center text-right">
+                												<h2 class="text-white">{{areasCount}}</h2>
                 											</div>
                 										</div>
                 									</div>
