@@ -5,6 +5,7 @@ from Modulos.Puestos.views import PanelListPuestos, PanelCreatePuestos, PanelUpd
 from Modulos.AreasTrabajo.views import PanelListAreas, PanelCreateAreas, PanelUpdateAreas, PanelDeleteAreas
 from Modulos.Empleados.views import PanelListEmpleados, PanelCreateEmpleados, PanelUpdateEmpleados, PanelDeleteEmpleados
 from Modulos.Candidatos.views import PanelListCandidatos, PanelDeleteCandidatos
+from Modulos.Base.views import PanelDatosEmpresa
 
 urlpatterns = [
     path('', login_required(PanelIndex.as_view()), name = 'Index'),
@@ -25,4 +26,6 @@ urlpatterns = [
     path('Empleados/Eliminar/<int:pk>',login_required(PanelDeleteEmpleados.as_view()), name = 'EmpleadosEliminar'),
     #Candidatos
     path('Candidatos/',login_required(PanelListCandidatos.as_view()), name = 'CandidatosListar'),
+    #Datos empresa
+    path('Datos_de_la_empresa',login_required(PanelDatosEmpresa.as_view()), name = 'DatosEmpresa'),
 ]

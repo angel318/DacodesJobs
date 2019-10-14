@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic.edit import FormView
 from django.contrib.auth import login,logout
 from django.http import HttpResponseRedirect
-from .forms import FormularioLogin
+from .forms import *
 
 # Create your views here.
 def consultaDatosEmpresa():
@@ -73,3 +73,20 @@ class Login(FormView):
 def logoutUsurio(request):
     logout(request)
     return HttpResponseRedirect('/accounts/login/')
+
+class PanelDatosEmpresa(ListView):
+    def get(self,request,*args,**kwargs):
+
+        datosEmpresa = consultaDatosEmpresa()
+
+        print(datosEmpresa)
+
+        datos = {
+            'form' : DatosEmpresaForm,
+            'datosEmpresa' : datosEmpresa,
+        }
+
+        if datosEmpresa == None:
+            return render(request, 'panel/DatosEmpresa/formulario.html')
+        else:
+            return render(request, 'panel/DatosEmpresa/listado.html', datos)

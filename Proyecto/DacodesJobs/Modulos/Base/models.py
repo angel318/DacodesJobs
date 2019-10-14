@@ -12,11 +12,12 @@ class ModeloBase(models.Model):
         abstract = True
 
 class DatosEmpresa(ModeloBase):
-    nombre = models.CharField('Nombre', max_length = 200)
+    nombre = models.CharField('Nombre', max_length = 50)
+    rfc = models.CharField('RFC', max_length = 50, null = True, blank = True, default = 'N/A')
     nosotros = RichTextField()
     telefono = models.CharField('Teléfono', max_length = 20, null = True, blank = True)
-    email = models.EmailField('Correo electrónico', max_length = 200, null = True, blank = True)
-    direccion = models.CharField('Dirección', max_length = 200, null = True, blank = True)
+    email = models.EmailField('Correo electrónico', max_length = 50, null = True, blank = True)
+    direccion = models.CharField('Dirección', max_length = 100, null = True, blank = True)
     twitter = models.CharField('Twitter', max_length = 200, null = True, blank = True)
     facebook = models.CharField('Facebook', max_length = 200, null = True, blank = True)
     instagram = models.CharField('Instagram', max_length = 200, null = True, blank = True)
