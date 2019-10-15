@@ -19,6 +19,9 @@
 
     <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/sidebar/simple-sidebar.css' %}">
+
+    <link rel="stylesheet" href="{% static 'vendor/chartists/chartist.css' %}">
+
     {% block extracss %}
     {% endblock extracss %}
   </head>
@@ -68,27 +71,11 @@
                             <div class="col-xl-7">
                               <div class="card flex-fill w-100 mb-2">
                                 <div class="card-header">
-                                  <div class="card-actions float-right">
-                                    <a href="#" class="mr-1">
-                                      <i class="fa fa-sync-alt"></i>
-                                    </a>
-                                    <div class="d-inline-block dropdown show">
-                                      <a href="#" data-toggle="dropdown" data-display="static">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                      </a>
-
-                                      <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <h5 class="card-title mb-0">Recent Movement</h5>
+                                  <h5 class="card-title mb-0"><i class="far fa-chart-bar"></i> Nivel de estudios de los empleados</h5>
                                 </div><!--Card header--->
                                 <div class="card-body py-3">
                                   <div class="chart chart-sm">
-                                    <canvas id="chartjs-dashboard-line"></canvas>
+                                    <div class="ct-chart ct-golden-section" id="chart1"></div>
                                   </div>
                                 </div><!--Card body--->
                               </div><!--Card--->
@@ -174,22 +161,6 @@
                             <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
                               <div class="card flex-fill">
                                 <div class="card-header">
-                                  <div class="card-actions float-right">
-                                    <a href="#" class="mr-1">
-                                      <i class="fa fa-sync-alt"></i>
-                                    </a>
-                                    <div class="d-inline-block dropdown show">
-                                      <a href="#" data-toggle="dropdown" data-display="static">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                      </a>
-
-                                      <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                      </div>
-                                    </div>
-                                  </div>
                                   <h5 class="card-title mb-0">Calendar</h5>
                                 </div>
                                 <div class="card-body d-flex">
@@ -204,69 +175,33 @@
                             <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2 mt-3">
                               <div class="card flex-fill w-100">
                                 <div class="card-header">
-                                  <div class="card-actions float-right">
-                                    <a href="#" class="mr-1">
-                                      <i class="fa fa-sync-alt"></i>
-                                    </a>
-                                    <div class="d-inline-block dropdown show">
-                                      <a href="#" data-toggle="dropdown" data-display="static">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                      </a>
-                                      <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                      </div>
-                                    </div>
-                                  </div>
                                   <h5 class="card-title mb-0">Current Visitors</h5>
                                 </div>
                                 <div class="card-body px-4">
-                                  <div id="world_map" style="height:350px;"></div>
+                                  <div class="ct-chart ct-golden-section" id="chart3"></div>
                                 </div>
                               </div>
                             </div>
                             <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
                               <div class="card flex-fill w-100">
                                 <div class="card-header">
-                                  <div class="card-actions float-right">
-                                    <a href="#" class="mr-1">
-                                      <i class="fa fa-sync-alt"></i>
-                                    </a>
-                                    <div class="d-inline-block dropdown show">
-                                      <a href="#" data-toggle="dropdown" data-display="static">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                      </a>
-                                      <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <h5 class="card-title mb-0">Browser Usage</h5>
+                                  <h5 class="card-title mb-0"><i class="far fa-chart-bar"></i> Cantidad de empleados por area</h5>
                                 </div>
                                 <div class="card-body d-flex">
                                   <div class="align-self-center w-100">
                                     <div class="py-3">
                                       <div class="chart chart-xs">
-                                        <canvas id="chartjs-dashboard-pie"></canvas>
+                                        <div class="ct-chart ct-golden-section" id="chart2"></div>
                                       </div>
                                     </div>
                                     <table class="table mb-0">
                                       <tbody>
-                                        <tr>
-                                          <td><i class="fas fa-square-full text-primary"></i> Chrome</td>
-                                          <td class="text-right">4401</td>
-                                        </tr>
-                                        <tr>
-                                          <td><i class="fas fa-square-full text-warning"></i> Firefox</td>
-                                          <td class="text-right">4003</td>
-                                        </tr>
-                                        <tr>
-                                          <td><i class="fas fa-square-full text-danger"></i> IE</td>
-                                          <td class="text-right">1589</td>
-                                        </tr>
+                                        {% for key, value in grafica2.items %}
+                                          <tr>
+                                            <td><i class="fas fa-chevron-right"></i> {{key}}</td>
+                                            <td class="text-right">{{value}}</td>
+                                          </tr>
+                                        {% endfor %}
                                       </tbody>
                                     </table>
                                   </div>
@@ -280,22 +215,7 @@
                           <div class="col-12 col-lg-8 col-xxl-9 d-flex">
                             <div class="card flex-fill mb-2">
                               <div class="card-header">
-                                <div class="card-actions float-right">
-                                  <a href="#" class="mr-1">
-                                    <i class="fa fa-sync-alt"></i>
-                                  </a>
-                                  <div class="d-inline-block dropdown show">
-                                    <a href="#" data-toggle="dropdown" data-display="static">
-                                      <i class="fa fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="#">Action</a>
-                                      <a class="dropdown-item" href="#">Another action</a>
-                                      <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <h5 class="card-title mb-0">Top Empleados mejor pagados</h5>
+                                <h5 class="card-title mb-0">Top 10 Empleados mejor pagados</h5>
                               </div>
                               <table id="datatables-dashboard" class="table table-striped my-0">
                                 <thead>
@@ -311,7 +231,7 @@
                                   {% for topEmpleado in topEmpleados %}
                                   <tr>
                                     <td>{{topEmpleado.nombre}}</td>
-                                    <td class="d-none d-xl-table-cell">{{topEmpleado.nivel_estudios}}</td>
+                                    <td class="d-none d-xl-table-cell">{{topEmpleado.carrera}}</td>
                                     <td class="d-none d-xl-table-cell"><span class="badge badge-success">{{topEmpleado.puesto}}</span></td>
                                     <td class="d-none d-xl-table-cell">{{topEmpleado.contrato}}</td>
                                     <td >{{topEmpleado.salario}}</td>
@@ -324,21 +244,6 @@
                           <div class="col-12 col-lg-4 col-xxl-3 d-flex">
                             <div class="card flex-fill w-100 mb-2">
                               <div class="card-header">
-                                <div class="card-actions float-right">
-                                  <a href="#" class="mr-1">
-                                    <i class="fa fa-sync-alt"></i>
-                                  </a>
-                                  <div class="d-inline-block dropdown show">
-                                    <a href="#" data-toggle="dropdown" data-display="static">
-                                      <i class="fa fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="#">Action</a>
-                                      <a class="dropdown-item" href="#">Another action</a>
-                                      <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                  </div>
-                                </div>
                                 <h5 class="card-title mb-0">Monthly Sales</h5>
                               </div>
                               <div class="card-body d-flex w-100">
@@ -360,7 +265,9 @@
       </div>
     </div>
   </div>
-
+  {% for key, value in grafica1Nombres.items %}
+    {{key}},
+  {% endfor %}
   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
   <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
   <script src="{% static 'js/jquery-ui.js' %}"></script>
@@ -374,11 +281,63 @@
   <script src="{% static 'js/aos.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'vendor/chartists/chartist.min.js' %}"></script>
   <script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+  </script>
+
+  <script>
+    //Chart 1
+    new Chartist.Pie('#chart1', {
+      series: [20, 10, 30, 40]
+    }, {
+      donut: true,
+      donutWidth: 60,
+      donutSolid: true,
+      startAngle: 270,
+      total: 200,
+      showLabel: true
+    });
+
+    //Chart 2
+    var data = {
+      labels: [{% for key, value in grafica2.items %}{{"'"}}{{key}}{{"'"}},{% endfor %}],
+      series: [{% for key, value in grafica2.items %}{{value}},{% endfor %}]
+      };
+
+      var options = {
+      labelInterpolationFnc: function(value) {
+        return value[0]
+      }
+      };
+
+      var responsiveOptions = [
+      ['screen and (min-width: 640px)', {
+        chartPadding: 30,
+        labelOffset: 100,
+        labelDirection: 'explode',
+        labelInterpolationFnc: function(value) {
+          return value;
+        }
+      }],
+      ['screen and (min-width: 1024px)', {
+        labelOffset: 80,
+        chartPadding: 20
+      }]
+      ];
+
+      new Chartist.Pie('#chart2', data, options, responsiveOptions);
+    //Chart 3
+    new Chartist.Bar('#chart3', {
+      labels: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+      series: [20, 60, 120, 200, 180, 20, 10]
+    }, {
+      distributeSeries: true
+    });
+
   </script>
   {% block extrajs %}
   {% endblock extrajs %}

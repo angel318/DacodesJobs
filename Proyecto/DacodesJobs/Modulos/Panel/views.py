@@ -9,17 +9,23 @@ from Modulos.Puestos.models import Puestos
 class PanelIndex(TemplateView):
     def get(self,request,*args,**kwargs):
 
-        topEmpleados = list(Empleados.objects.order_by('-salario'))
+        topEmpleados = list(Empleados.objects.order_by('-salario'))[:10]
         empleadosCount = Empleados.objects.count()
         candidatosCount = Candidatos.objects.count()
         areasCount = AreasTrabajo.objects.count()
         puestosCount = Puestos.objects.count()
 
+        grafica = Empleados.objects.values_list('puesto_id').distinct()
+        grafica2 = {}
+        for graf in grafica:
+            variable = AreasTrabajo.objects.filter(id = graf[0]).get()
+            grafica2[variable.nombre] = Empleados.objects.filter(puesto = graf).count()
         datos = {
             'topEmpleados' : topEmpleados,
             'empleadosCount' : empleadosCount,
             'candidatosCount' : candidatosCount,
             'areasCount' : areasCount,
             'puestosCount' : puestosCount,
+            'grafica2' :grafica2
         }
         return render(request, 'panel/index.html', datos)
