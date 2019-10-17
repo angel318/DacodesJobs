@@ -10,8 +10,7 @@
 {% block card-header %}
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
-      <span><i class="fa fa-bars"></i> Formulario de Empleados </span>
-      <a href="{% url 'Panel:EmpleadosCrear' %}" class="btn btn-light"><i class="fa fa-plus-circle"></i> Nuevo</a>
+      <span><i class="fa fa-bars"></i> Formulario de datos de la empresa </span>
     </div>
   </div>
 {% endblock card-header %}
@@ -38,75 +37,67 @@
 
   <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.nombre.label }}</label>
-      <div class="col-lg-10">
+    <div class="form-row">
+			<div class="form-group col-sm-6">
+        <label>{{ form.nombre.label }}</label>
         {{ form.nombre }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.direccion.label }}</label>
-      <div class="col-lg-10">
-        {{ form.direccion }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.rfc.label }}</label>
-      <div class="col-lg-10">
+			</div>
+      <div class="form-group col-sm-6">
+        <label>{{ form.rfc.label }}</label>
         {{ form.rfc }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.nosotros.label }}</label>
-      <div class="col-lg-10">
-        {{ form.nosotros }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.telefono.label }}</label>
-      <div class="col-lg-10">
+			</div>
+		</div>
+    <div class="form-row">
+			<div class="form-group col-sm-6">
+        <label>{{ form.telefono.label }}</label>
         {{ form.telefono }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.email.label }}</label>
-      <div class="col-lg-10">
+			</div>
+      <div class="form-group col-sm-6">
+        <label>{{ form.email.label }}</label>
         {{ form.email }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.facebook.label }}</label>
-      <div class="col-lg-10">
-        {{ form.facebook }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.twitter.label }}</label>
-      <div class="col-lg-10">
+			</div>
+		</div>
+    <div class="form-row">
+			<div class="form-group col-sm-6">
+        <label>{{ form.direccion.label }}</label>
+        {{ form.direccion }}
+			</div>
+      <div class="form-group col-sm-6">
+        <label>{{ form.twitter.label }}</label>
         {{ form.twitter }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.instagram.label }}</label>
-      <div class="col-lg-10">
+			</div>
+		</div>
+    <div class="form-row">
+			<div class="form-group col-sm-6">
+        <label>{{ form.facebook.label }}</label>
+        {{ form.facebook }}
+			</div>
+      <div class="form-group col-sm-6">
+        <label>{{ form.instagram.label }}</label>
         {{ form.instagram }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.linkedin.label }}</label>
-      <div class="col-lg-10">
+			</div>
+		</div>
+    <div class="form-row">
+			<div class="form-group col-sm-6">
+        <label>{{ form.linkedin.label }}</label>
         {{ form.linkedin }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.pagina.label }}</label>
-      <div class="col-lg-10">
+			</div>
+      <div class="form-group col-sm-6">
+        <label>{{ form.pagina.label }}</label>
         {{ form.pagina }}
+			</div>
+      <div class="form-group col-sm-6">
+        <label>{{ form.horario.label }}</label>
+        {{ form.horario }}
       </div>
-    </div>
+      <div class="form-group col-sm-12">
+        <label>{{ form.nosotros.label }}</label>
+        {{ form.nosotros }}
+			</div>
+		</div>
     <div class="form-group row">
       <div class="container d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary btn-lg border-primary"><i class="far fa-save"></i> Guardar Información</button>
+        <button type="submit" class="btn btn-primary btn-lg border-primary"><i class="fal fa-save"></i> Guardar Información</button>
       </div>
     </div>
   </form>

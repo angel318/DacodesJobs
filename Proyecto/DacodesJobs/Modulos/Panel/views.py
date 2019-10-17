@@ -7,6 +7,7 @@ from Modulos.AreasTrabajo.models import AreasTrabajo
 from Modulos.Puestos.models import Puestos
 from .forms import *
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 def grafica3(query3):
     grafica3 = {}
@@ -72,6 +73,7 @@ class PanelUsuarioConfig(UpdateView):
         form = UserForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Actualización Realizada.')
             datos = {
                 'usuario' : usuario
             }

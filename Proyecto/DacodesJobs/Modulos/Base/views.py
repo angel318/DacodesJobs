@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.views.generic import ListView, View, TemplateView
+from django.shortcuts import render,redirect
+from django.views.generic import ListView, View, TemplateView, CreateView, UpdateView
+from django.urls import reverse_lazy
+
 #MODELOS
 from .models import *
 from Modulos.Puestos.forms import *
@@ -74,19 +76,30 @@ def logoutUsurio(request):
     logout(request)
     return HttpResponseRedirect('/accounts/login/')
 
-class PanelDatosEmpresa(ListView):
+class PanelListDatosEmpresa(ListView):
     def get(self,request,*args,**kwargs):
-
         datosEmpresa = consultaDatosEmpresa()
 
-        print(datosEmpresa)
-
-        datos = {
-            'form' : DatosEmpresaForm,
-            'datosEmpresa' : datosEmpresa,
-        }
-
         if datosEmpresa == None:
-            return render(request, 'panel/DatosEmpresa/formulario.html')
+            datos = {'form' : DatosEmpresaForm,}
+            return render(request, 'panel/DatosEmpresa/formulario.html',datos)
         else:
+            datos = {'form' : DatosEmpresaForm,'datosEmpresa' : datosEmpresa,}
             return render(request, 'panel/DatosEmpresa/listado.html', datos)
+
+    def post(self,request,*args,**kwargs):
+        form = DatosEmpresaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('Panel:DatosEmpresa')
+        else:
+            datos = {
+                'form':form,
+            }
+            return render(request,'panel/DatosEmpresa/formulario.html',datos)
+
+class PanelUpdateDatosEmpresa(UpdateView):
+    model = DatosEmpresa
+    form_class = DatosEmpresaForm
+    template_name = 'panel/DatosEmpresa/formulario.html'
+    success_url = reverse_lazy('Panel:DatosEmpresa')

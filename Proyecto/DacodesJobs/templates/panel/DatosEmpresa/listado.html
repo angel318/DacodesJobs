@@ -3,7 +3,7 @@
 {% block titulo %} Puestos {% endblock titulo %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item text-capitalize" aria-current="page">Puestos</li>
+  <li class="breadcrumb-item text-capitalize" aria-current="page">Datos de la empresa</li>
   <li class="breadcrumb-item text-capitalize" aria-current="page">Listado</li>
 {% endblock breadcrumb %}
 
@@ -11,8 +11,8 @@
 {% block card-header %}
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
-      <span><i class="fal fa-bars"></i> Puestos Vacantes Publicados</span>
-      <a href="" class="btn btn-light" type="button" name="button"><i class="fal fa-plus-circle"></i> Nuevo</a>
+      <span><i class="fal fa-bars"></i> Datos de la empresa</span>
+      <a href="{% url 'Panel:DatosEmpresaActualizar' datosEmpresa.id %}" class="btn btn-light"><i class="fal fa-edit"></i> Actualizar datos</a>
     </div>
   </div>
 {% endblock card-header %}
@@ -20,7 +20,99 @@
 {% block card-body %}
   {% if datosEmpresa %}
     <div class="container">
-      {{datosEmpresa.nombre}}
+      <div class="bg-white rounded shadow-sm">
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fal fa-industry fa-3x text-dark "></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Nombre de la empresa</strong>
+            {{datosEmpresa.nombre}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fal fa-barcode fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">RFC de la empresa</strong>
+            {{datosEmpresa.rfc}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fal fa-info fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Descripción de la empresa</strong>
+            {{datosEmpresa.nosotros | safe}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fal fa-mobile fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Telefono de contacto</strong>
+            {{datosEmpresa.telefono}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fal fa-envelope fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Correo de contacto</strong>
+            {{datosEmpresa.email}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fal fa-map-marked-alt fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Dirección de la empresa</strong>
+            {{datosEmpresa.direccion}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fal fa-calendar-alt fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Horario de la empresa</strong>
+            {{datosEmpresa.horario}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fab fa-twitter fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Twitter de la empresa</strong>
+            {{datosEmpresa.twitter}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fab fa-facebook fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Facebook de la empresa</strong>
+            {{datosEmpresa.facebook}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fab fa-instagram fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Instagram de la empresa</strong>
+            {{datosEmpresa.instagram}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fab fa-linkedin fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Linkedin de la empresa</strong>
+            {{datosEmpresa.linkedin}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fab fa-twitter fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Twitter de la empresa</strong>
+            {{datosEmpresa.twitter}}
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <i class="bd-placeholder-img mr-2 rounded fal fa-globe fa-3x text-dark"></i>
+          <div class="media-body pb-3 mb-0 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Web de la empresa</strong>
+            {{datosEmpresa.pagina}}
+          </div>
+        </div>
+      </div>
     </div>
   {% else %}
     <div class="container">

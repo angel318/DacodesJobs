@@ -22,7 +22,7 @@ class PanelListAreas(ListView):
     model = AreasTrabajo
     template_name = 'panel/AreasTrabajo/listado.html'
     context_object_name = 'areas'
-    paginate_by = 10
+    paginate_by = 6
     queryset = AreasTrabajo.objects.filter(estatus = True).order_by('nombre')
 
 class PanelCreateAreas(CreateView):
