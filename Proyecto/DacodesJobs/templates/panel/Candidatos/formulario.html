@@ -16,8 +16,8 @@
 {% block card-header %}
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
-      <span><i class="fa fa-bars"></i> Formulario de Empleados </span>
-      <a href="{% url 'Panel:EmpleadosCrear' %}" class="btn btn-light"><i class="fa fa-plus-circle"></i> Nuevo</a>
+      <span><i class="fal fa-bars"></i> Formulario de Empleados </span>
+      <a href="{% url 'Panel:EmpleadosCrear' %}" class="btn btn-light"><i class="fal fa-plus-circle"></i> Nuevo</a>
     </div>
   </div>
 {% endblock card-header %}
@@ -26,7 +26,7 @@
 
   {% if form.errors %}
    <div class="alert alert-light">
-     <h4 class="text-primary font-weight-bold"><i class="fa fa-exclamation-triangle text-warning"></i> Por favor corrige los siguientes errores</h4>
+     <h4 class="text-primary font-weight-bold"><i class="fal fa-exclamation-triangle text-warning"></i> Por favor corrige los siguientes errores</h4>
      <ul>
        {% for field in form %}
          {% if field.errors %}
@@ -88,7 +88,7 @@
     </div>
     <div class="form-group row">
       <div class="container d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary btn-lg border-primary"><i class="far fa-save"></i> Guardar Información</button>
+        <button type="submit" class="btn btn-primary btn-lg border-primary"><i class="fal fa-save"></i> Guardar Información</button>
       </div>
     </div>
   </form>

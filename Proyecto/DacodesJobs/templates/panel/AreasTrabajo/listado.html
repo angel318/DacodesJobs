@@ -10,8 +10,8 @@
 {% block card-header %}
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
-      <span><i class="fa fa-bars"></i> Puestos Vacantes Publicados</span>
-      <a href="{% url 'Panel:AreasCrear' %}" class="btn btn-light"><i class="fa fa-plus-circle"></i> Nuevo</a>
+      <span><i class="far fa-bars"></i> Puestos Vacantes Publicados</span>
+      <a href="{% url 'Panel:AreasCrear' %}" class="btn btn-light"><i class="fal fa-plus-circle"></i> Nuevo</a>
     </div>
   </div>
 {% endblock card-header %}
@@ -34,7 +34,7 @@
             <th>{{area.id}}</th>
             <td><a href="{% url 'Panel:AreasActualizar' area.id %}">{{area.nombre}}</a></td>
             <td>{{area.jefe}}</td>
-            <td><a href="{% url 'Panel:AreasEliminar' area.id %}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a></td>
+            <td><a href="{% url 'Panel:AreasEliminar' area.id %}" class="btn btn-danger btn-sm"><i class="fal fa-trash"></i></a></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -68,7 +68,7 @@
       <div class="row">
         <div class="col-lg-6 d-flex align-self-center justify-content-center">
           <div class="">
-            <span class="h1 display-3"><strong><i class="fa fa-exclamation-circle text-warning"></i> Ups!</strong></span>
+            <span class="h1 display-3"><strong><i class="fal fa-exclamation-circle text-warning"></i> Ups!</strong></span>
             <p class="display-5 text-primary"><strong><i class="fa fa-database"></i> Sin información desponible</strong></p>
           </div>
         </div>

@@ -15,13 +15,19 @@ def grafica3(query3):
         grafica3[areaTrabajo.nombre] = Empleados.objects.filter(puesto = graf).count()
     return grafica3
 
+def grafica2(query2):
+    grafica2 = {}
+    for graf in query2:
+        puestoCandidato = Puestos.objects.filter(id = graf[0]).get()
+        grafica2[puestoCandidato.nombre] = Candidatos.objects.filter(id_puesto = graf[0]).count()
+    return grafica2
+
 def grafica1(query1):
     grafica1 = {}
     for graf in query1:
         empleado = Empleados.objects.filter(id = graf[1]).get()
         grafica1[empleado.get_nivel_estudios_display()] = Empleados.objects.filter(nivel_estudios = graf[0]).count()
     return grafica1
-
 
 #Vistas
 class PanelIndex(TemplateView):
@@ -32,18 +38,24 @@ class PanelIndex(TemplateView):
         candidatosCount = Candidatos.objects.count()
         areasCount = AreasTrabajo.objects.count()
         puestosCount = Puestos.objects.count()
+        usuariosCount = User.objects.count()
 
-        query3 = Empleados.objects.values_list('puesto_id').distinct()
+
         query1 = Empleados.objects.values_list('nivel_estudios','id').distinct()
+        query2 = Candidatos.objects.values_list('id_puesto').distinct()
+        query3 = Empleados.objects.values_list('puesto_id').distinct()
+        print(query2)
 
         datos = {
             'topEmpleados' : topEmpleados,
             'empleadosCount' : empleadosCount,
             'candidatosCount' : candidatosCount,
+            'usuariosCount' : usuariosCount,
             'areasCount' : areasCount,
             'puestosCount' : puestosCount,
-            'grafica3' :grafica3(query3),
             'grafica1' :grafica1(query1),
+            'grafica2' :grafica2(query2),
+            'grafica3' :grafica3(query3),
         }
         return render(request, 'panel/index.html', datos)
 
