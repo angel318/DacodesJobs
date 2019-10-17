@@ -99,6 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
+        'width': 'auto',
     },
 }
 # Internationalization
@@ -119,4 +120,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = reverse_lazy('Panel:Index') 
+LOGIN_REDIRECT_URL = reverse_lazy('Panel:Index')

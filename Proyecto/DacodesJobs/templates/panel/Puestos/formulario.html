@@ -44,69 +44,57 @@
 
   <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
-    <div class="form-group">
-      <div class="custom-control custom-switch">
-        {{ form.disponible }}
-        <label class="custom-control-label" for="customSwitch1">{{ form.disponible.label }}</label>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.nombre.label }}</label>
-      <div class="col-lg-10">
+    <div class="form-row">
+      <div class="form-group col-sm-10">
+        <label>{{ form.nombre.label }}</label>
         {{ form.nombre }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.salario.label }}</label>
-      <div class="col-lg-10">
+			</div>
+      <div class="form-group col-sm-2">
+        <div class="custom-control custom-switch">
+          {{ form.disponible }}
+          <label class="custom-control-label" for="customSwitch1">{{ form.disponible.label }}</label>
+        </div>
+			</div>
+		</div>
+    <div class="form-row">
+			<div class="form-group col-sm-6">
+        <label>{{ form.salario.label }}</label>
         {{ form.salario }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.jornada.label }}</label>
-      <div class="col-lg-10">
+			</div>
+      <div class="form-group col-sm-6">
+        <label>{{ form.jornada.label }}</label>
         {{ form.jornada }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.contrato.label }}</label>
-      <div class="col-lg-10">
+			</div>
+		</div>
+    <div class="form-row">
+			<div class="form-group col-sm-6">
+        <label>{{ form.contrato.label }}</label>
         {{ form.contrato }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.descripcion.label }}</label>
-      <div class="col-lg-10">
-        {{ form.descripcion }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.requisitos.label }}</label>
-      <div class="col-lg-10">
-        {{ form.requisitos }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.deseable.label }}</label>
-      <div class="col-lg-10">
-        {{ form.deseable }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.funciones.label }}</label>
-      <div class="col-lg-10">
-        {{ form.funciones }}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-lg-2 col-form-label">{{ form.imagen_referencial.label }}</label>
-      <div class="col-lg-10">
+			</div>
+      <div class="form-group col-sm-6">
+        <label>{{ form.imagen_referencial.label }}</label>
         {{ form.imagen_referencial }}
-      </div>
-    </div>
+			</div>
+		</div>
+
+    <div class="form-row">
+			<div class="form-group col-sm-12">
+        <label>{{ form.descripcion.label }}</label>
+        {{ form.descripcion }}
+			</div>
+      <div class="form-group col-sm-12">
+        <label>{{ form.requisitos.label }}</label>
+        {{ form.requisitos }}
+			</div>
+      <div class="form-group col-sm-12">
+        <label>{{ form.deseable.label }}</label>
+        {{ form.deseable }}
+			</div>
+		</div>
+
     <div class="form-group row">
       <div class="container d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary btn-lg border-primary"><i class="far fa-save"></i> Guardar Información</button>
+        <button type="submit" class="btn btn-primary btn-lg border-primary"><i class="fa fa-save"></i> Guardar Información</button>
       </div>
     </div>
   </form>

@@ -28,4 +28,6 @@ urlpatterns = [
     path('Candidatos/',login_required(PanelListCandidatos.as_view()), name = 'CandidatosListar'),
     #Datos empresa
     path('Datos_de_la_empresa',login_required(PanelDatosEmpresa.as_view()), name = 'DatosEmpresa'),
+    #Usuario
+    path('Usuario/Configuraciones',login_required(PanelUsuarioConfig.as_view()), name = 'UsuarioConfig'),
 ]
