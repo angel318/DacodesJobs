@@ -1,10 +1,9 @@
 from django.shortcuts import render,redirect
-from django.views.generic import ListView,DeleteView,CreateView
+from django.views.generic import ListView,DeleteView,CreateView,View
 from .models import *
 from .forms import *
 from Modulos.Puestos.models import Puestos
 from django.urls import reverse_lazy
-
 
 class PanelListCandidatos(ListView):
     model = Candidatos
@@ -18,7 +17,6 @@ class PanelDeleteCandidatos(DeleteView):
     template_name = 'panel/Candidatos/eliminar.html'
     success_url = reverse_lazy('Panel:CandidatosListar')
 
-#Formulario para postulaciones
 class Candidatos(CreateView):
     model = Candidatos
     def get(self, request, pk, *args, **kwargs):

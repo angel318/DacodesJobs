@@ -10,6 +10,8 @@ class Candidatos(ModeloBase):
     email = models.EmailField('Correo electrónico', max_length = 200, null = True, blank = True)
     curriculum = models.FileField('Curriculum', null = True, blank = True , upload_to = 'Candidatos/')
 
+    objects = models.Manager()
+    
     class Meta:
         verbose_name = 'Candidato'
         verbose_name_plural = 'Candidatos'

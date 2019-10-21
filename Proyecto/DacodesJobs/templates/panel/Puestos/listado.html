@@ -27,8 +27,8 @@
             <th>Nombre</th>
             <th>Salario</th>
             <th>Contrato</th>
-            <th>Estatus</th>
-            <th>Opciones</th>
+            <th class="text-center">Estatus</th>
+            <th class="text-center">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -38,40 +38,42 @@
             <td><a href="{% url 'Panel:PuestosActualizar' puesto.id %}">{{puesto.nombre}}</a></td>
             <td>{{puesto.salario}}</td>
             <td>{{puesto.contrato}}</td>
-            <td>
+            <td class="text-center">
               {% if puesto.disponible %}
                 <span class="badge badge-primary">Disponible</span>
               {% else %}
                 <span class="badge badge-danger">Ocupado</span>
               {% endif %}
             </td>
-            <td><a href="{% url 'Panel:PuestosEliminar' puesto.id %}" class="btn btn-danger btn-sm"><i class="fal fa-trash"></i></a></td>
+            <td class="text-center"><a href="{% url 'Panel:PuestosEliminar' puesto.id %}" class="btn btn-danger btn-sm"><i class="fal fa-trash"></i></a></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
       {% if is_paginated %}
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
+        <div class="d-flex justify-content-center">
+          <ul class="pagination pagination-lg">
             {% if page_obj.has_previous %}
               <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
             {% else %}
-              <li class="page-item disabled"><span>&laquo;</span></li>
+              <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
             {% endif %}
+
             {% for i in paginator.page_range %}
               {% if page_obj.number == i %}
-                <li class="page-item active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
               {% else %}
                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
               {% endif %}
             {% endfor %}
+
             {% if page_obj.has_next %}
               <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
             {% else %}
-              <li class="page-item disabled"><span>&raquo;</span></li>
+              <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
             {% endif %}
           </ul>
-        </nav>
+        </div>
       {% endif %}
     </div>
   {% else %}

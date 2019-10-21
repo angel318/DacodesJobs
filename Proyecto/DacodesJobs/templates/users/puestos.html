@@ -19,26 +19,24 @@
 
   <hr class="featurette-divider">
   {% if puestos %}
-  {% for puesto in puestos %}
-  <div class="row featurette">
-    <div class="col-md-7">
-      <h2 class="featurette-heading">{{puesto.nombre}} <span class="text-muted">{{puesto.salario}}</span></h2>
-      <p class="lead">{{puesto.descripcion | safe | truncatewords:"50"}}</p>
-    </div>
-    <div class="col-md-5">
-      <a href="{% url 'Puestos:DetallePuesto' puesto.id %}" class="post-sm-entry">
-        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto d-none d-md-block d-lg-block d-xl-block d-xl-none"  src="{{puesto.imagen_referencial.url}}" alt="" width="500" height="500">
-      </a>
-    </div>
-  </div>
+    {% for puesto in puestos %}
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">{{puesto.nombre}} <span class="text-muted">{{puesto.salario}}</span></h2>
+          <p class="lead">{{puesto.descripcion | safe | truncatewords:"50"}}</p>
+        </div>
+        <div class="col-md-5">
+          <a href="{% url 'Puestos:DetallePuesto' puesto.id %}" class="post-sm-entry">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto d-none d-md-block d-lg-block d-xl-block d-xl-none"  src="{{puesto.imagen_referencial.url}}" alt="" width="500" height="500">
+          </a>
+        </div>
+      </div>
 
-  <hr class="featurette-divider">
-  {% endfor %}
+      <hr class="featurette-divider">
+    {% endfor %}
   {% endif %}
   <!-- /END THE FEATURETTES -->
-
 </div><!-- /.container -->
-
 {% endblock cuerpo %}
 
 

@@ -27,7 +27,7 @@
             <th>Salario</th>
             <th>Jornada</th>
             <th>Contrato</th>
-            <th>Opciones</th>
+            <th class="text-center">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -38,33 +38,35 @@
             <td>{{empleado.salario}}</td>
             <td>{{empleado.jornada}}</td>
             <td>{{empleado.contrato}}</td>
-            <td><a href="{% url 'Panel:EmpleadosEliminar' empleado.id %}" class="btn btn-danger btn-sm"><i class="fal fa-trash"></i></a></td>
+            <td class="text-center"><a href="{% url 'Panel:EmpleadosEliminar' empleado.id %}" class="btn btn-danger btn-sm"><i class="fal fa-trash"></i></a></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
       {% if is_paginated %}
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
+        <div class="d-flex justify-content-center">
+          <ul class="pagination pagination-lg">
             {% if page_obj.has_previous %}
               <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
             {% else %}
-              <li class="page-item disabled"><span>&laquo;</span></li>
+              <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
             {% endif %}
+
             {% for i in paginator.page_range %}
               {% if page_obj.number == i %}
-                <li class="page-item active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
               {% else %}
                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
               {% endif %}
             {% endfor %}
+
             {% if page_obj.has_next %}
               <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
             {% else %}
-              <li class="page-item disabled"><span>&raquo;</span></li>
+              <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
             {% endif %}
           </ul>
-        </nav>
+        </div>
       {% endif %}
     </div>
   {% else %}
@@ -83,3 +85,5 @@
     </div>
   {% endif %}
 {% endblock card-body %}
+{% block extrajs %}
+{% endblock extrajs %}

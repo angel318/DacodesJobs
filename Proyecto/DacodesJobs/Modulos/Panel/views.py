@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import TemplateView, UpdateView, View, ListView
 from Modulos.Empleados.models import Empleados
 from Modulos.Candidatos.models import Candidatos
 from Modulos.AreasTrabajo.models import AreasTrabajo
@@ -83,3 +83,13 @@ class PanelUsuarioConfig(UpdateView):
                 'form':form,
             }
             return render(request,'panel/User/formulario.html',datos)
+
+class PanelListUsuarios(ListView):
+    model = User
+    template_name = 'panel/User/listado.html'
+    context_object_name = 'users'
+    paginate_by = 10
+    def get_queryset(self):
+        queryset = User.objects.order_by('username').exclude(username = self.request.user.username).all()
+        #queryset = User.objects.order_by('username').all()
+        return queryset

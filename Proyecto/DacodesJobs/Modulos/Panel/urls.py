@@ -31,4 +31,5 @@ urlpatterns = [
     path('Datos_de_la_empresa/Actualizar/<int:pk>',login_required(PanelUpdateDatosEmpresa.as_view()), name = 'DatosEmpresaActualizar'),
     #Usuario
     path('Usuario/Configuraciones',login_required(PanelUsuarioConfig.as_view()), name = 'UsuarioConfig'),
+    path('Usuarios',login_required(PanelListUsuarios.as_view()), name = 'UsuariosListar'),
 ]
