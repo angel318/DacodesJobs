@@ -4,7 +4,7 @@
     <title>{% block titulo %} DacodesJobs {% endblock titulo %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap-Materia.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/sidebar/simple-sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/chartists/chartist.css' %}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.1.0/css/all.css">
@@ -222,7 +222,7 @@
                           <div class="col-12 col-md-6 col-xl-7 d-flex">
                             <div class="card flex-fill w-100 mb-2" style="background-color:#f2f2f2;">
                               <div class="card-header">
-                                <h5 class="card-title mb-0 font-weight-light"><i class="fal fa-chart-bar"></i> Monthly Sales</h5>
+                                <h5 class="card-title mb-0 font-weight-light"><i class="fal fa-chart-bar"></i> Promedio de salarios</h5>
                               </div>
                               <div class="card-body d-flex w-100">
                                 <div class="align-self-center">
@@ -244,7 +244,7 @@
     </div>
   </div>
 
-
+{{grafica4}}
   <script src="{% static 'vendor/hikers/js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'vendor/chartists/chartist.min.js' %}"></script>
@@ -352,9 +352,9 @@
 
         //CHART4
         var options4 = {
-            chart: {height: '300',width: '100%',type: 'pie'},
-            labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-            series: [44, 55, 13, 43, 22],
+            chart: {height: '300',width: '100%',type: 'donut'},
+            labels: [{% for key, value in grafica4.items %}{{"'$"}}{{key}}{{"'"}},{% endfor %}],
+            series: [{% for key, value in grafica4.items %}{{value}},{% endfor %}],
             responsive: [{
                 breakpoint: '100%',
                 options: {

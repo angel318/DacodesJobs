@@ -138,7 +138,7 @@
                 </div>
                 <div class="col-md-5">
                   <a href="{% url 'Puestos:DetallePuesto' puesto.id %}" class="post-sm-entry d-none d-md-block d-lg-block d-xl-block d-xl-none">
-                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded"  src="{{puesto.imagen_referencial.url}}" alt="" width="500" height="500">
+                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded"  src="{% if puesto.imagen_referencial %} {{ puesto.imagen_referencial.ur}} {% endif %}" alt="" width="500" height="500">
                   </a>
                 </div>
               </div>

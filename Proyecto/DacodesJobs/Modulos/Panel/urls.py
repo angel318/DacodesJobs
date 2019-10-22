@@ -1,9 +1,9 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from .views import *
-from Modulos.Puestos.views import PanelListPuestos, PanelCreatePuestos, PanelUpdatePuestos, PanelDeletePuestos
+from Modulos.Puestos.views import PanelListPuestos, PanelCreatePuestos, PanelUpdatePuestos, PanelDeletePuestos, export_puestos_xls, import_puestos_xls
 from Modulos.AreasTrabajo.views import PanelListAreas, PanelCreateAreas, PanelUpdateAreas, PanelDeleteAreas
-from Modulos.Empleados.views import PanelListEmpleados, PanelCreateEmpleados, PanelUpdateEmpleados, PanelDeleteEmpleados
+from Modulos.Empleados.views import PanelListEmpleados, PanelCreateEmpleados, PanelUpdateEmpleados, PanelDeleteEmpleados, export_empleados_xls, import_empleados_xls
 from Modulos.Candidatos.views import PanelListCandidatos, PanelDeleteCandidatos
 from Modulos.Base.views import PanelListDatosEmpresa, PanelUpdateDatosEmpresa
 
@@ -14,6 +14,8 @@ urlpatterns = [
     path('Puestos/Crear',login_required(PanelCreatePuestos.as_view()), name = 'PuestosCrear'),
     path('Puestos/Actualizar/<int:pk>',login_required(PanelUpdatePuestos.as_view()), name = 'PuestosActualizar'),
     path('Puestos/Eliminar/<int:pk>',login_required(PanelDeletePuestos.as_view()), name = 'PuestosEliminar'),
+    path('Puestos/export/xls/', login_required(export_puestos_xls), name='export_puestos_xls'),
+    path('Puestos/import/xls/', login_required(import_puestos_xls), name='import_puestos_xls'),
     #Areas Trabajo
     path('Areas',login_required(PanelListAreas.as_view()), name = 'AreasListar'),
     path('Areas/Crear',login_required(PanelCreateAreas.as_view()), name = 'AreasCrear'),
@@ -24,6 +26,8 @@ urlpatterns = [
     path('Empleados/Crear',login_required(PanelCreateEmpleados.as_view()), name = 'EmpleadosCrear'),
     path('Empleados/Actualizar/<int:pk>',login_required(PanelUpdateEmpleados.as_view()), name = 'EmpleadosActualizar'),
     path('Empleados/Eliminar/<int:pk>',login_required(PanelDeleteEmpleados.as_view()), name = 'EmpleadosEliminar'),
+    path('Empleados/export/xls/', login_required(export_empleados_xls), name='export_empleados_xls'),
+    path('Empleados/import/xls/', login_required(import_empleados_xls), name='import_empleados_xls'),
     #Candidatos
     path('Candidatos/',login_required(PanelListCandidatos.as_view()), name = 'CandidatosListar'),
     #Datos empresa

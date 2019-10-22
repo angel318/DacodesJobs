@@ -11,12 +11,25 @@
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
       <span><i class="fal fa-bars"></i> Empleados Activos</span>
-      <a href="{% url 'Panel:EmpleadosCrear' %}" class="btn btn-light"><i class="fal fa-plus-circle"></i> Nuevo</a>
+      <div class="btn-group">
+        <button type="button" class="btn btn-outline-info" data-placement="top" title="Importar tabla" data-toggle="modal" data-target="#exampleModal"><i class="fal fa-upload"></i></button>
+        <a href="{% url 'Panel:export_empleados_xls' %}" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Exportar tabla"><i class="fal fa-download"></i></a>
+        <a href="{% url 'Panel:EmpleadosCrear' %}" class="btn btn-light ml-5"><i class="fal fa-plus-circle"></i> Nuevo</a>
+      </div>
     </div>
   </div>
 {% endblock card-header %}
 
 {% block card-body %}
+  {% if messages %}
+    <div class="alert alert-dismissible alert-success">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      {% for message in messages %}
+      <span {% if message.tags %} class=" {{ message.tags }} " {% endif %}></span>
+        <strong><i class="fal fa-check-circle"></i> </strong>{{ message }}
+      {% endfor %}
+    </div>
+  {% endif %}
   {% if empleados %}
     <div class="table-responsive">
       <table class="table table-striped table-hover">
@@ -84,6 +97,28 @@
       </div>
     </div>
   {% endif %}
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form method="post" enctype="multipart/form-data" action="{% url 'Panel:import_empleados_xls' %}" accept="application/msexcel">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Formulario de importación</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              {% csrf_token %}
+              <input type="file" name="myfile" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock card-body %}
 {% block extrajs %}
 {% endblock extrajs %}

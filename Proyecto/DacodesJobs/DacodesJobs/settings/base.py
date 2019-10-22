@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'Modulos.Empleados',
     'Modulos.Panel',
     'Modulos.Puestos',
-    'ckeditor'
+    'ckeditor',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = reverse_lazy('Panel:Index')
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True  

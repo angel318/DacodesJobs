@@ -8,6 +8,7 @@ from Modulos.Puestos.models import Puestos
 from .forms import *
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.http import HttpResponse
 
 def grafica3(query3):
     grafica3 = {}
@@ -30,6 +31,12 @@ def grafica1(query1):
         grafica1[empleado.get_nivel_estudios_display()] = Empleados.objects.filter(nivel_estudios = graf[0]).count()
     return grafica1
 
+def grafica4(query4):
+    grafica4 = {}
+    for graf in query4:
+        grafica4[graf[0]] = Empleados.objects.filter(salario = graf[0]).count()
+    return grafica4
+
 #Vistas
 class PanelIndex(TemplateView):
     def get(self,request,*args,**kwargs):
@@ -41,12 +48,10 @@ class PanelIndex(TemplateView):
         puestosCount = Puestos.objects.count()
         usuariosCount = User.objects.count()
 
-
         query1 = Empleados.objects.values_list('nivel_estudios','id').distinct()
         query2 = Candidatos.objects.values_list('id_puesto').distinct()
         query3 = Empleados.objects.values_list('puesto_id').distinct()
-        print(query2)
-
+        query4 = Empleados.objects.values_list('salario').distinct()
         datos = {
             'topEmpleados' : topEmpleados,
             'empleadosCount' : empleadosCount,
@@ -57,15 +62,14 @@ class PanelIndex(TemplateView):
             'grafica1' :grafica1(query1),
             'grafica2' :grafica2(query2),
             'grafica3' :grafica3(query3),
+            'grafica4' :grafica4(query4),
         }
         return render(request, 'panel/index.html', datos)
 
 class PanelUsuarioConfig(UpdateView):
     def get(self,request,*args,**kwargs):
         usuario = User.objects.filter(username = request.user.username).get()
-        datos = {
-            'usuario' : usuario
-        }
+        datos = {'usuario' : usuario}
         return render(request, 'panel/User/formulario.html', datos)
 
     def post(self,request,*args,**kwargs):
@@ -74,14 +78,10 @@ class PanelUsuarioConfig(UpdateView):
         if form.is_valid():
             form.save()
             messages.success(request, 'Actualización Realizada.')
-            datos = {
-                'usuario' : usuario
-            }
+            datos = {'usuario' : usuario}
             return redirect('Panel:UsuarioConfig')
         else:
-            datos = {
-                'form':form,
-            }
+            datos = {'form':form,}
             return render(request,'panel/User/formulario.html',datos)
 
 class PanelListUsuarios(ListView):
@@ -91,5 +91,4 @@ class PanelListUsuarios(ListView):
     paginate_by = 10
     def get_queryset(self):
         queryset = User.objects.order_by('username').exclude(username = self.request.user.username).all()
-        #queryset = User.objects.order_by('username').all()
         return queryset

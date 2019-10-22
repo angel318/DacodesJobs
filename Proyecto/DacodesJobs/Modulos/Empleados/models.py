@@ -2,6 +2,7 @@ from django.db import models
 from Modulos.AreasTrabajo.models import AreasTrabajo
 from Modulos.Base.models import ModeloBase
 from django.utils.functional import lazy
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 nivel_estudios = [
     ('pri', 'Primaria'),
@@ -21,7 +22,7 @@ class Empleados(ModeloBase):
     nivel_estudios = models.CharField('Nivel de estudios', max_length = 15, null = False, blank = False, choices = nivel_estudios)
     carrera = models.CharField('Carrera Estudiada',max_length = 50, null = True, blank = True)
     direccion = models.CharField('Dirección', max_length = 100, null = True, blank = False)
-    salario = models.CharField('Salario (Mensual)', max_length = 200, null = False, blank = False)
+    salario = models.DecimalField('Salario (Mensual)', max_digits=6, decimal_places=2, null = False, blank = False, validators=[MinValueValidator(0)])
     jornada = models.CharField('Jornada', max_length = 100, null = False, blank = False)
     contrato = models.CharField('Contrato', max_length = 100, null = False, blank = False)
     fecha_nacimiento = models.DateField('Fecha de nacimiento', max_length = 100, null = True, blank = False)

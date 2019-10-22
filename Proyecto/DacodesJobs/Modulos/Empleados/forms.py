@@ -21,7 +21,7 @@ class EmpleadosForm(forms.ModelForm):
             'nivel_estudios':forms.Select(attrs = {'class':'form-control','placeholder':'Ingrese el nivel de estudios del empleado','id':'nivel_estudios'}),
             'direccion':forms.TextInput(attrs = {'class':'form-control','placeholder':'Ingrese la dirección del empleado','id':'direccion'}),
             'carrera':forms.TextInput(attrs = {'class':'form-control','placeholder':'Ingrese la carrera estudiada del empleado','id':'carrera'}),
-            'salario':forms.TextInput(attrs = {'class':'form-control','placeholder':'Ingrese el salario (mensual) del empleado','id':'salario'}),
+            'salario':forms.NumberInput(attrs = {'class':'form-control','placeholder':'Ingrese el salario (mensual) del empleado','id':'salario','min':'0.0','value':'0.0'}),
             'jornada':forms.TextInput(attrs = {'class':'form-control','placeholder':'Ingrese la jornada laboral  del empleado','id':'jornada'}),
             'contrato':forms.TextInput(attrs = {'class':'form-control','placeholder':'Ingrese el tipo de contrato del empleado','id':'contrato'}),
             'fecha_nacimiento':DateInput(attrs = {'class':'form-control','id':'fecha_nacimiento'}),
