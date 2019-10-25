@@ -66,23 +66,36 @@ class PanelIndex(TemplateView):
         }
         return render(request, 'panel/index.html', datos)
 
-class PanelUsuarioConfig(UpdateView):
-    def get(self,request,*args,**kwargs):
-        usuario = User.objects.filter(username = request.user.username).get()
-        datos = {'usuario' : usuario}
-        return render(request, 'panel/User/formulario.html', datos)
+class PanelUsuarioConfig(TemplateView):
+    template_name = 'panel/User/formulario.html'
 
     def post(self,request,*args,**kwargs):
-        usuario = User.objects.filter(username = request.user.username).get()
         form = UserForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, 'Actualización Realizada.')
-            datos = {'usuario' : usuario}
             return redirect('Panel:UsuarioConfig')
         else:
             datos = {'form':form,}
             return render(request,'panel/User/formulario.html',datos)
+
+class PanelUsuarioChangePassword(TemplateView):
+    template_name = 'panel/User/change_password.html'
+
+    def post(self, request,*args,**kwargs):
+        from django.contrib.auth.forms import PasswordChangeForm
+        from django.contrib.auth import update_session_auth_hash
+
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            #form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Contraseña Cambiada Con Éxito.')
+            return redirect('Panel:UsuarioConfig')
+        else:
+            messages.warning(request, ('Erros'))
+            datos = {'form':form,}
+            return render(request,'panel/User/change_password.html',datos)
 
 class PanelListUsuarios(ListView):
     model = User

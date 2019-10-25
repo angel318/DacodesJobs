@@ -36,4 +36,5 @@ urlpatterns = [
     #Usuario
     path('Usuario/Configuraciones',login_required(PanelUsuarioConfig.as_view()), name = 'UsuarioConfig'),
     path('Usuarios',login_required(PanelListUsuarios.as_view()), name = 'UsuariosListar'),
+    path('Usuario/Change_password',login_required(PanelUsuarioChangePassword.as_view()), name= 'UsuarioChangePassword'),
 ]

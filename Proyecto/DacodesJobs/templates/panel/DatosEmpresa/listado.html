@@ -19,13 +19,17 @@
 
 {% block card-body %}
   {% if messages %}
-    <div class="alert alert-dismissible alert-success">
-      <button type="button" class="close" data-dismiss="alert">×</button>
-      {% for message in messages %}
-      <span {% if message.tags %} class=" {{ message.tags }} " {% endif %}></span>
-        <strong><i class="fal fa-check-circle"></i> </strong>{{ message }}
-      {% endfor %}
-    </div>
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {% if message.tags == "warning" %}
+          <i class="fal fa-times-circle"></i>
+        {% else %}
+          <i class="fal fa-check-circle"></i>
+        {% endif %}
+        {{ message }}
+      </div>
+    {% endfor %}
   {% endif %}
   {% if datosEmpresa %}
     <div class="container">
