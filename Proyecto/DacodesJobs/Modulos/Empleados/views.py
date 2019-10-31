@@ -4,30 +4,38 @@ from .models import *
 from .forms import EmpleadosForm
 from django.urls import reverse_lazy
 from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 class PanelListEmpleados(ListView):
     model = Empleados
     template_name = 'panel/Empleados/listado.html'
     context_object_name = 'empleados'
-    paginate_by = 10
-    queryset = Empleados.objects.filter(estatus = True).order_by('nombre')
+    paginate_by = 6
+    queryset = Empleados.objects.order_by('nombre').filter(estatus = True,)
 
-class PanelCreateEmpleados(CreateView):
+class PanelCreateEmpleados(SuccessMessageMixin, CreateView):
     model = Empleados
     form_class = EmpleadosForm
     template_name = 'panel/Empleados/formulario.html'
+    success_message = 'Datos Registrados Exitosamente'
     success_url = reverse_lazy('Panel:EmpleadosListar')
 
-class PanelUpdateEmpleados(UpdateView):
+class PanelUpdateEmpleados(SuccessMessageMixin, UpdateView):
     model = Empleados
     form_class = EmpleadosForm
     template_name = 'panel/Empleados/formulario.html'
+    success_message = 'Datos Actualizados Exitosamente'
     success_url = reverse_lazy('Panel:EmpleadosListar')
 
-class PanelDeleteEmpleados(DeleteView):
+class PanelDeleteEmpleados(SuccessMessageMixin, DeleteView):
     model = Empleados
     template_name = 'panel/Empleados/eliminar.html'
+    success_message = 'Datos Eliminados Exitosamente'
     success_url = reverse_lazy('Panel:EmpleadosListar')
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request, self.success_message)
+        return super(PanelDeletePuestos, self).delete(request, *args, **kwargs)
 
 def export_empleados_xls(request):
     from .resources import EmpleadosResource

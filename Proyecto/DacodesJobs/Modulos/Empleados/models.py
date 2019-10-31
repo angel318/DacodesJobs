@@ -25,7 +25,7 @@ class Empleados(ModeloBase):
     salario = models.DecimalField('Salario (Mensual)', max_digits=6, decimal_places=2, null = False, blank = False, validators=[MinValueValidator(0)])
     jornada = models.CharField('Jornada', max_length = 100, null = False, blank = False)
     contrato = models.CharField('Contrato', max_length = 100, null = False, blank = False)
-    fecha_nacimiento = models.DateField('Fecha de nacimiento', max_length = 100, null = True, blank = False)
+    fecha_nacimiento = models.DateField(null = True, blank = False)
     puesto = models.ForeignKey(AreasTrabajo,on_delete=models.CASCADE)
 
     class Meta:

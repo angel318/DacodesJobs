@@ -2,6 +2,17 @@
 {% load staticfiles %}
 {% block titulo %} Empleados {% endblock titulo %}
 
+{% block extracss %}
+  <script>
+    $(function () {
+      $.datepicker.setDefaults($.datepicker.regional["es"]);
+        $("#datepicker").datepicker({
+        firstDay: 1
+      });
+    });
+  </script>
+{% endblock extracss %}
+
 {% block breadcrumb %}
   <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="{% url 'Panel:EmpleadosListar' %}">Empleados</a></li>
   {% if object %}

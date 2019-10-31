@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView, UpdateView, View, ListView
+from django.views.generic import TemplateView, UpdateView, View, ListView, CreateView
 from Modulos.Empleados.models import Empleados
 from Modulos.Candidatos.models import Candidatos
 from Modulos.AreasTrabajo.models import AreasTrabajo
@@ -8,6 +8,7 @@ from Modulos.Puestos.models import Puestos
 from .forms import *
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
 
 def grafica3(query3):
@@ -88,13 +89,14 @@ class PanelUsuarioChangePassword(TemplateView):
 
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
-            #form.save()
+            print(form.cleaned_data["new_password1"])
+            form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request, 'Contraseña Cambiada Con Éxito.')
             return redirect('Panel:UsuarioConfig')
         else:
-            messages.warning(request, ('Erros'))
-            datos = {'form':form,}
+            messages.warning(request, ('Hubo algunos errores en la información que ingresó. Por favor, corrija lo siguiente:'))
+            datos = {'form':form}
             return render(request,'panel/User/change_password.html',datos)
 
 class PanelListUsuarios(ListView):
@@ -105,3 +107,10 @@ class PanelListUsuarios(ListView):
     def get_queryset(self):
         queryset = User.objects.order_by('username').exclude(username = self.request.user.username).all()
         return queryset
+
+class PanelCreateUsuario(SuccessMessageMixin, CreateView):
+    model = UserForm
+    template_name = 'panel/User/formulario_crear.html'
+    form_class = UserCreateForm
+    success_message = 'Datos Registrados Exitosamente'
+    success_url = reverse_lazy('Panel:UsuariosListar')

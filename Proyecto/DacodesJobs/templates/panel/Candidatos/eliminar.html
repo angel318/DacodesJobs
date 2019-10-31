@@ -3,9 +3,9 @@
 {% block titulo %} Emmpleados {% endblock titulo %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="{% url 'Panel:EmpleadosListar' %}">Empleados</a></li>
+  <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="{% url 'Panel:EmpleadosListar' %}">Candidatos</a></li>
   <li class="breadcrumb-item text-capitalize" aria-current="page">Eliminar</li>
-  <li class="breadcrumb-item text-capitalize" aria-current="page">{{object.nombre | truncatewords:"4"}}</li>
+  <li class="breadcrumb-item text-capitalize" aria-current="page">{{object.nombre}} {{object.apellidos}}</li>
 {% endblock breadcrumb %}
 
 {% block card-body %}

@@ -4,6 +4,8 @@ from .models import *
 from .forms import *
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 #Areas de trabajo
 class Areas(ListView):
@@ -25,19 +27,25 @@ class PanelListAreas(ListView):
     paginate_by = 6
     queryset = AreasTrabajo.objects.filter(estatus = True).order_by('nombre')
 
-class PanelCreateAreas(CreateView):
+class PanelCreateAreas(SuccessMessageMixin, CreateView):
     model = AreasTrabajo
     form_class = AreasForm
     template_name = 'panel/AreasTrabajo/formulario.html'
+    success_message = 'Datos Registrados Exitosamente'
     success_url = reverse_lazy('Panel:AreasListar')
 
-class PanelUpdateAreas(UpdateView):
+class PanelUpdateAreas(SuccessMessageMixin, UpdateView):
     model = AreasTrabajo
     form_class = AreasForm
     template_name = 'panel/AreasTrabajo/formulario.html'
+    success_message = 'Datos Actualizados Exitosamente'
     success_url = reverse_lazy('Panel:AreasListar')
 
-class PanelDeleteAreas(DeleteView):
+class PanelDeleteAreas(SuccessMessageMixin, DeleteView):
     model = AreasTrabajo
     template_name = 'panel/AreasTrabajo/eliminar.html'
     success_url = reverse_lazy('Panel:AreasListar')
+    success_message = 'Datos Eliminados Exitosamente'
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request, self.success_message)
+        return super(PanelDeleteAreas, self).delete(request, *args, **kwargs)

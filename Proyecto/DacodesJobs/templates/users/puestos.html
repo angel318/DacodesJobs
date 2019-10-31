@@ -38,6 +38,31 @@
 
       <hr class="featurette-divider">
     {% endfor %}
+    {% if puestos.has_other_pages %}
+      <div class="d-flex justify-content-end">
+        <ul class="pagination">
+          {% if puestos.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ puestos.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+            <li class="page-item disabled"><a class="page-link">&laquo;</a></li>
+          {% endif %}
+
+          {% for i in puestos.paginator.page_range %}
+            {% if puestos.number == i %}
+              <li class="page-item"><a class="page-link bg-info text-white">{{ i }}</a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if puestos.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ puestos.next_page_number }}">&raquo;</a></li>
+          {% else %}
+            <li class="page-item disabled"><a class="page-link">&raquo;</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
   {% endif %}
   <!-- /END THE FEATURETTES -->
 </div><!-- /.container -->

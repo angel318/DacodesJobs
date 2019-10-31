@@ -11,6 +11,7 @@ from rest_framework.generics import ListAPIView
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator
 
 #--------Todos los puestos--------
 class PuestosPublicados(ListView):
@@ -19,6 +20,11 @@ class PuestosPublicados(ListView):
             estatus = True,
             disponible = True
         ))
+
+        paginator = Paginator(puestos, 4)
+        page = request.GET.get('page')
+        puestos = paginator.get_page(page)
+
         form = BuscadorForm()
         datos = {
             'puestos' : puestos,
@@ -77,7 +83,7 @@ class PanelListPuestos(ListView):
     model = Puestos
     template_name = 'panel/Puestos/listado.html'
     context_object_name = 'puestos'
-    paginate_by = 10
+    paginate_by = 6
     queryset = Puestos.objects.filter(estatus = True).order_by('nombre')
 
 #--------Create--------

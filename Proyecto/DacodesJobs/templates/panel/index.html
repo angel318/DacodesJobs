@@ -9,8 +9,19 @@
     <link rel="stylesheet" href="{% static 'vendor/chartists/chartist.css' %}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.1.0/css/all.css">
     <link href="{% static 'vendor/ApexCharts/samples/assets/styles.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/jquery-ui-1.10.1.css' %}" />
+    <script src="{% static 'js/jquery-1.9.1.js' %}"></script>
+    <script src="{% static 'js/jquery-ui-1.10.1.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
     {% block extracss %}
     {% endblock extracss %}
+    <script type="text/javascript">
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+    </script>
   </head>
   <body>
 
@@ -28,7 +39,7 @@
         {% include "panel/partials/Nav.html" %}
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="#">Inicio</a></li>
+              <li class="breadcrumb-item text-capitalize" aria-current="page"><a href="{% url 'Panel:Index' %}">Inicio</a></li>
               {% block breadcrumb %}
               {% endblock breadcrumb %}
             </ol>
@@ -243,19 +254,16 @@
       </div>
     </div>
   </div>
-
-{{grafica4}}
-  <script src="{% static 'vendor/hikers/js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'vendor/chartists/chartist.min.js' %}"></script>
   <script src="{% static 'vendor/ApexCharts/dist/apexcharts.js' %}"></script>
+  <script src="{% static 'vendor/Hikers/jquery-ui.js' %}"></script>
   <script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-
   {% block extrajs %}
     <script>
       //CHART1
@@ -308,9 +316,6 @@
                 bar: {
                     horizontal: true,
                 }
-            },
-            dataLabels: {
-                enabled: false
             },
             series: [{
                 data: [{% for key, value in grafica2.items %}{{value}},{% endfor %}]

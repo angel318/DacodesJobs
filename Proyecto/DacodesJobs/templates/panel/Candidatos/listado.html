@@ -11,6 +11,7 @@
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
       <span><i class="fal fa-bars"></i> Candidatos Postulados</span>
+        <a href="{% url 'Panel:export_candidatos_xls' %}" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Exportar tabla"><i class="fal fa-download"></i></a>
     </div>
   </div>
 {% endblock card-header %}
@@ -31,15 +32,15 @@
   {% endif %}
   {% if candidatos %}
     <div class="table-responsive">
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover text-center">
         <thead>
           <tr>
             <th>#</th>
             <th>Nombre</th>
             <th>Correo</th>
             <th>Telefono</th>
-            <th class="text-center">Curriculum</th>
-            <td class="text-center">Opciones</td>
+            <th>Curriculum</th>
+            <td>Opciones</td>
           </tr>
         </thead>
         <tbody>
@@ -49,8 +50,8 @@
             <td>{{candidato.nombre}} {{candidato.apellidos}}</td>
             <td>{{candidato.email}}</td>
             <td>{{candidato.telefono}}</td>
-            <td class="text-center"><a href="{{candidato.curriculum.url}}">Curriculum</a></td>
-            <td class="text-center"><a href="" class="btn btn-danger btn-sm"><i class="fal fa-trash"></i></a></td>
+            <td>{% if candidato.curriculum %}<a href="{{candidato.curriculum.url}}">Curriculum</a> {% else %} <span class="badge badge-info">No Enviado</span> {% endif %}</td>
+            <td><a href="{% url 'Panel:CandidatosEliminar' candidato.id %}" class="btn btn-danger"><i class="fal fa-trash"></i></a></td>
           </tr>
           {% endfor %}
         </tbody>

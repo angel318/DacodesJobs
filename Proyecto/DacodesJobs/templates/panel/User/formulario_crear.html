@@ -4,14 +4,13 @@
 
 {% block breadcrumb %}
   <li class="breadcrumb-item text-capitalize" aria-current="page">Usuario</li>
-  <li class="breadcrumb-item text-capitalize" aria-current="page">{{user.username}}</li>
+  <li class="breadcrumb-item text-capitalize" aria-current="page">Crear</li>
 {% endblock breadcrumb %}
 
 {% block card-header %}
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
       <span><i class="fa fa-bars"></i> Formulario de Usuarios </span>
-      <a href="{% url 'Panel:UsuarioChangePassword' %}" class="btn btn-light"><i class="fa fa-unlock-alt"></i> Cambiar contraseña</a>
     </div>
   </div>
 {% endblock card-header %}
@@ -54,22 +53,32 @@
     {% csrf_token %}
     <div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="inputFirstName">First name</label>
-				<input type="text" class="form-control" name="first_name" id="FirstName" placeholder="First name" value="{{user.first_name}}">
+				<label for="inputFirstName">Nombre de usurio</label>
+				{{form.username}}
 			</div>
 			<div class="form-group col-md-6">
-				<label for="inputLastName">Last name</label>
-				<input type="text" class="form-control" name="last_name" placeholder="Last name" value="{{user.last_name}}">
+				<label for="inputLastName">Correo</label>
+        {{form.email}}
 			</div>
 		</div>
     <div class="form-row">
       <div class="form-group col-md-6">
-				<label for="inputFirstName">User name</label>
-				<input type="text" class="form-control" name="username" placeholder="First name" value="{{user.username}}">
+				<label for="inputFirstName">Nombres</label>
+        {{form.first_name}}
 			</div>
       <div class="form-group col-md-6">
-        <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" name="email" placeholder="Email" value="{{user.email}}">
+        <label for="inputEmail4">Apellidos</label>
+        {{form.last_name}}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+				<label for="inputFirstName">Contraseña</label>
+        {{form.password1}}
+			</div>
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Confirmar Contraseña</label>
+        {{form.password2}}
       </div>
     </div>
     <div class="form-group row">

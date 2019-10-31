@@ -2,6 +2,10 @@
 {% load staticfiles %}
 {% block titulo %} Empleados {% endblock titulo %}
 
+{% block extracss %}
+
+{% endblock extracss%}
+
 {% block breadcrumb %}
   <li class="breadcrumb-item text-capitalize" aria-current="page">Empleados</li>
   <li class="breadcrumb-item text-capitalize" aria-current="page">Listado</li>
@@ -36,7 +40,7 @@
   {% endif %}
   {% if empleados %}
     <div class="table-responsive">
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover text-center">
         <thead>
           <tr>
             <th>#</th>
@@ -44,25 +48,32 @@
             <th>Salario</th>
             <th>Jornada</th>
             <th>Contrato</th>
-            <th class="text-center">Opciones</th>
+            <th>Opciones</th>
           </tr>
         </thead>
         <tbody>
           {% for empleado in empleados %}
           <tr>
             <th>{{empleado.id}}</th>
-            <td><a href="{% url 'Panel:EmpleadosActualizar' empleado.id %}">{{empleado.nombre}}</a></td>
-            <td>{{empleado.salario}}</td>
+            <td>{{empleado.nombre}}</td>
+            <td>${{empleado.salario}}</td>
             <td>{{empleado.jornada}}</td>
             <td>{{empleado.contrato}}</td>
-            <td class="text-center"><a href="{% url 'Panel:EmpleadosEliminar' empleado.id %}" class="btn btn-danger btn-sm"><i class="fal fa-trash"></i></a></td>
+            <td>
+              <a href="{% url 'Panel:EmpleadosActualizar' empleado.id %}" class="btn btn-primary mb-1" data-toggle="tooltip" data-placement="top" title="Editar">
+                <i class="fal fa-edit"></i>
+              </a>
+              <a href="{% url 'Panel:EmpleadosEliminar' empleado.id %}" class="btn btn-danger mb-1" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                <i class="fal fa-trash"></i>
+              </a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
       {% if is_paginated %}
-        <div class="d-flex justify-content-center">
-          <ul class="pagination pagination-lg">
+        <div class="d-flex justify-content-end">
+          <ul class="pagination">
             {% if page_obj.has_previous %}
               <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
             {% else %}

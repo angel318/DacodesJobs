@@ -16,6 +16,8 @@ from django.views.generic.edit import FormView
 from django.contrib.auth import login,logout
 from django.http import HttpResponseRedirect
 from .forms import *
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
 def consultaDatosEmpresa():
@@ -98,8 +100,9 @@ class PanelListDatosEmpresa(ListView):
             }
             return render(request,'panel/DatosEmpresa/formulario.html',datos)
 
-class PanelUpdateDatosEmpresa(UpdateView):
+class PanelUpdateDatosEmpresa(SuccessMessageMixin, UpdateView):
     model = DatosEmpresa
     form_class = DatosEmpresaForm
     template_name = 'panel/DatosEmpresa/formulario.html'
+    success_message = 'Datos Actualizados Exitosamente'
     success_url = reverse_lazy('Panel:DatosEmpresa')

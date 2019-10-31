@@ -37,39 +37,46 @@
   {% endif %}
   {% if puestos %}
     <div class="table-responsive">
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover text-center">
         <thead>
           <tr>
             <th>#</th>
             <th>Nombre</th>
             <th>Salario</th>
             <th>Contrato</th>
-            <th class="text-center">Estatus</th>
-            <th class="text-center">Opciones</th>
+            <th>Estatus</th>
+            <th>Opciones</th>
           </tr>
         </thead>
         <tbody>
           {% for puesto in puestos %}
           <tr>
-            <th scope="row">{{puesto.id}}</th>
-            <td><a href="{% url 'Panel:PuestosActualizar' puesto.id %}">{{puesto.nombre}}</a></td>
+            <th>{{puesto.id}}</th>
+            <td>{{puesto.nombre}}</td>
             <td>{{puesto.salario}}</td>
             <td>{{puesto.contrato}}</td>
-            <td class="text-center">
+            <td>
               {% if puesto.disponible %}
                 <span class="badge badge-primary">Disponible</span>
               {% else %}
                 <span class="badge badge-danger">Ocupado</span>
               {% endif %}
             </td>
-            <td class="text-center"><a href="{% url 'Panel:PuestosEliminar' puesto.id %}" class="btn btn-danger btn-sm"><i class="fal fa-trash"></i></a></td>
+            <td class="text-center">
+              <a href="{% url 'Panel:PuestosActualizar' puesto.id %}" class="btn btn-primary mb-1">
+                <i class="fal fa-edit"></i>
+              </a>
+              <a href="{% url 'Panel:PuestosEliminar' puesto.id %}" class="btn btn-danger mb-1">
+                <i class="fal fa-trash"></i>
+              </a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
       {% if is_paginated %}
-        <div class="d-flex justify-content-center">
-          <ul class="pagination pagination-lg">
+        <div class="d-flex justify-content-end">
+          <ul class="pagination">
             {% if page_obj.has_previous %}
               <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
             {% else %}

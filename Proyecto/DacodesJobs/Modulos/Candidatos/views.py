@@ -4,6 +4,8 @@ from .models import *
 from .forms import *
 from Modulos.Puestos.models import Puestos
 from django.urls import reverse_lazy
+from .resources import CandidatosResource
+from django.http import HttpResponse
 
 class PanelListCandidatos(ListView):
     model = Candidatos
@@ -37,3 +39,11 @@ class Candidatos(CreateView):
                 'form':form,
             }
             return render(request, 'users/formulario_candidatos.html',datos)
+
+def export_candidatos_xls(request):
+    from .resources import CandidatosResource
+    resource = CandidatosResource()
+    dataset = resource.export()
+    response = HttpResponse(dataset.xls, content_type='text/xls')
+    response['Content-Disposition'] = 'attachment; filename="Candidatos.xls"'
+    return response

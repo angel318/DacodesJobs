@@ -1,7 +1,7 @@
 from import_export import resources
-from .models import Empleados
+from .models import Candidatos
 
-class EmpleadosResource(resources.ModelResource):
+class CandidatosResource(resources.ModelResource):
     class Meta:
-     model = Empleados
+     model = Candidatos
      exclude = ('fecha_creacion','fecha_modificacion','fecha_eliminacion')
