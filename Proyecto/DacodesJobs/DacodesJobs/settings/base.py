@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'Modulos.Puestos',
     'ckeditor',
     'import_export',
-    'django_tables2',
 ]
 
 MIDDLEWARE = [
@@ -124,5 +123,3 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = reverse_lazy('Panel:Index')
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
-
-DJANGO_TABLES2_TEMPLATE = 'django_tables2/bootstrap4.html'

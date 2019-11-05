@@ -6,15 +6,12 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django_tables2 import SingleTableView
-from .tables import *
 
-class PanelListEmpleados(SingleTableView):
+class PanelListEmpleados(ListView):
     model = Empleados
     template_name = 'panel/Empleados/listado.html'
     context_object_name = 'empleados'
     paginate_by = 6
-    table_class = EmpleadosTable
     queryset = Empleados.objects.order_by('nombre').filter(estatus = True,)
 
 class PanelCreateEmpleados(SuccessMessageMixin, CreateView):
