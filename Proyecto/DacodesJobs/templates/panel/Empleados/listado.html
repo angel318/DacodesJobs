@@ -18,7 +18,7 @@
       <div class="btn-group">
         <button type="button" class="btn btn-outline-info" data-placement="top" title="Importar tabla" data-toggle="modal" data-target="#exampleModal"><i class="fal fa-upload"></i></button>
         <a href="{% url 'Panel:export_empleados_xls' %}" class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="Exportar tabla"><i class="fal fa-download"></i></a>
-        <a href="{% url 'Panel:EmpleadosCrear' %}" class="btn btn-light ml-5"><i class="fal fa-plus-circle"></i> Nuevo</a>
+        <a href="{% url 'Panel:EmpleadosCrear' %}" class="btn btn-light ml-5" data-toggle="tooltip" data-placement="top" title="Agregar Empleado"><i class="fal fa-plus-circle"></i> Nuevo</a>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@
       </div>
     </div>
   {% endif %}
-  
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <form method="post" enctype="multipart/form-data" action="{% url 'Panel:import_empleados_xls' %}" accept="application/msexcel">

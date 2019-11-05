@@ -12,6 +12,8 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
+from django_tables2 import SingleTableView
+from .tables import *
 
 #--------Todos los puestos--------
 class PuestosPublicados(ListView):
@@ -79,11 +81,12 @@ class Buscador(ListAPIView):
 
 #--------VISTAS DE ADMIN--------
 #--------List--------
-class PanelListPuestos(ListView):
+class PanelListPuestos(SingleTableView):
     model = Puestos
     template_name = 'panel/Puestos/listado.html'
     context_object_name = 'puestos'
     paginate_by = 6
+    table_class = EmpleadosTable
     queryset = Puestos.objects.filter(estatus = True).order_by('nombre')
 
 #--------Create--------

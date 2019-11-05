@@ -1,5 +1,6 @@
 {% extends 'panel/index.html' %}
 {% load staticfiles %}
+{% load render_table from django_tables2 %}
 {% block titulo %} Candidatos {% endblock titulo %}
 
 {% block breadcrumb %}
@@ -12,69 +13,30 @@
     <div class="row d-flex justify-content-between">
       <span><i class="fal fa-bars"></i> Usuarios Registrados</span>
       {% if user.is_staff %}
-        <a href="{% url 'Panel:UsuariosCrear' %}" class="btn btn-light ml-5" type="button" name="button"><i class="fal fa-plus-circle"></i> Nuevo</a>
+        <a href="{% url 'Panel:UsuariosCrear' %}" class="btn btn-light ml-5"  data-toggle="tooltip" data-placement="top" title="Agregar Usuario"><i class="fal fa-plus-circle"></i> Nuevo</a>
       {% endif %}
     </div>
   </div>
 {% endblock card-header %}
 
 {% block card-body %}
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {% if message.tags == "warning" %}
+          <i class="fal fa-times-circle"></i>
+        {% else %}
+          <i class="fal fa-check-circle"></i>
+        {% endif %}
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
   {% if users %}
-    <div class="table-responsive">
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Correo</th>
-            <th class="text-center">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for user in users %}
-          <tr>
-            <th>{{user.username}}</th>
-            <td>{{user.first_name}}</td>
-            <td>{{user.last_name}}</td>
-            <td>{{user.email}}</td>
-            <td class="text-center">
-              {% if user.is_active%}
-                <span class="badge badge-success">Activo</span>
-              {% else %}
-                <span class="badge badge-danger">Desactivado</span>
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% if is_paginated %}
-        <div class="d-flex justify-content-center">
-          <ul class="pagination pagination-lg">
-            {% if page_obj.has_previous %}
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-              <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-            {% endif %}
-
-            {% for i in paginator.page_range %}
-              {% if page_obj.number == i %}
-                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-              {% else %}
-                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-              {% endif %}
-            {% endfor %}
-
-            {% if page_obj.has_next %}
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-            {% else %}
-              <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-            {% endif %}
-          </ul>
-        </div>
-      {% endif %}
-    </div>
+    {% render_table table %}
   {% else %}
     <div class="container">
       <div class="row">
@@ -115,4 +77,9 @@
   </div>
 {% endblock card-body %}
 {% block extrajs %}
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable({paging: false,searching: false,info: false});
+  } );
+</script>
 {% endblock extrajs %}

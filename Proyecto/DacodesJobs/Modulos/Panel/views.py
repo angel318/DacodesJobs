@@ -10,6 +10,8 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
+from django_tables2 import SingleTableView
+from .tables import *
 
 def grafica3(query3):
     grafica3 = {}
@@ -99,11 +101,12 @@ class PanelUsuarioChangePassword(TemplateView):
             datos = {'form':form}
             return render(request,'panel/User/change_password.html',datos)
 
-class PanelListUsuarios(ListView):
+class PanelListUsuarios(SingleTableView):
     model = User
     template_name = 'panel/User/listado.html'
     context_object_name = 'users'
     paginate_by = 10
+    table_class = EmpleadosTable
     def get_queryset(self):
         queryset = User.objects.order_by('username').exclude(username = self.request.user.username).all()
         return queryset
