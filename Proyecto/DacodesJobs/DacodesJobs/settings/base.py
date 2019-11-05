@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Modulos.Puestos',
     'ckeditor',
     'import_export',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [
