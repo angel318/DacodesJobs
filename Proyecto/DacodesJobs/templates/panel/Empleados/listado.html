@@ -1,9 +1,9 @@
 {% extends 'panel/index.html' %}
+{% load render_table from django_tables2 %}
 {% load staticfiles %}
 {% block titulo %} Empleados {% endblock titulo %}
 
 {% block extracss %}
-
 {% endblock extracss%}
 
 {% block breadcrumb %}
@@ -40,62 +40,7 @@
   {% endif %}
   {% if empleados %}
     <div class="table-responsive">
-      <table class="table table-striped table-hover text-center">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Salario</th>
-            <th>Jornada</th>
-            <th>Contrato</th>
-            <th>Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for empleado in empleados %}
-          <tr>
-            <th>{{empleado.id}}</th>
-            <td>{{empleado.nombre}}</td>
-            <td>${{empleado.salario}}</td>
-            <td>{{empleado.jornada}}</td>
-            <td>{{empleado.contrato}}</td>
-            <td>
-              <a href="{% url 'Panel:EmpleadosActualizar' empleado.id %}" class="btn btn-primary mb-1" data-toggle="tooltip" data-placement="top" title="Editar">
-                <i class="fal fa-edit"></i>
-              </a>
-              <a href="{% url 'Panel:EmpleadosEliminar' empleado.id %}" class="btn btn-danger mb-1" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                <i class="fal fa-trash"></i>
-              </a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% if is_paginated %}
-        <div class="d-flex justify-content-end">
-          <ul class="pagination">
-            {% if page_obj.has_previous %}
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-              <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-            {% endif %}
-
-            {% for i in paginator.page_range %}
-              {% if page_obj.number == i %}
-                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-              {% else %}
-                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-              {% endif %}
-            {% endfor %}
-
-            {% if page_obj.has_next %}
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-            {% else %}
-              <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-            {% endif %}
-          </ul>
-        </div>
-      {% endif %}
+      {% render_table table %}
     </div>
   {% else %}
     <div class="container">
@@ -112,6 +57,7 @@
       </div>
     </div>
   {% endif %}
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <form method="post" enctype="multipart/form-data" action="{% url 'Panel:import_empleados_xls' %}" accept="application/msexcel">
@@ -127,8 +73,8 @@
               <input type="file" name="myfile" required>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Subir archivo</button>
           </div>
         </div>
       </form>
