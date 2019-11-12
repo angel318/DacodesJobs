@@ -4,7 +4,7 @@ from .views import *
 from Modulos.Puestos.views import PanelListPuestos, PanelCreatePuestos, PanelUpdatePuestos, PanelDeletePuestos, export_puestos_xls, import_puestos_xls
 from Modulos.AreasTrabajo.views import PanelListAreas, PanelCreateAreas, PanelUpdateAreas, PanelDeleteAreas
 from Modulos.Empleados.views import PanelListEmpleados, PanelCreateEmpleados, PanelUpdateEmpleados, PanelDeleteEmpleados, export_empleados_xls, import_empleados_xls
-from Modulos.Candidatos.views import PanelListCandidatos, PanelDeleteCandidatos, export_candidatos_xls
+from Modulos.Candidatos.views import PanelListCandidatos, PanelDeleteCandidatos, export_candidatos_xls, PanelMessageCandidatos
 from Modulos.Base.views import PanelListDatosEmpresa, PanelUpdateDatosEmpresa
 
 urlpatterns = [
@@ -30,6 +30,7 @@ urlpatterns = [
     path('Empleados/import/xls/', login_required(import_empleados_xls), name='import_empleados_xls'),
     #Candidatos
     path('Candidatos/',login_required(PanelListCandidatos.as_view()), name = 'CandidatosListar'),
+    path('Candidatos/Mensaje',login_required(PanelMessageCandidatos.as_view()), name = 'CandidatosListar'),
     path('Candidatos/Eliminar/<int:pk>',login_required(PanelDeleteCandidatos.as_view()), name = 'CandidatosEliminar'),
     path('Candidatos/export/xls/', login_required(export_candidatos_xls), name='export_candidatos_xls'),
     #Datos empresa

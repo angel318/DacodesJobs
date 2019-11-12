@@ -51,3 +51,13 @@ class CandidatosPostulacionForm(forms.ModelForm):
                 }
             ),
         }
+
+class CorreoForm(forms.Form):
+    asunto=forms.CharField(required=True)
+    destino=forms.EmailField()
+    contenido=forms.CharField(max_length=999, widget=forms.Textarea)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['asunto'].widget.attrs['class'] = 'form-control' 
+        self.fields['destino'].widget.attrs['class'] = 'form-control'
+        self.fields['contenido'].widget.attrs['class'] = 'form-control'

@@ -50,8 +50,21 @@
             <td>{{candidato.nombre}} {{candidato.apellidos}}</td>
             <td>{{candidato.email}}</td>
             <td>{{candidato.telefono}}</td>
-            <td>{% if candidato.curriculum %}<a href="{{candidato.curriculum.url}}">Curriculum</a> {% else %} <span class="badge badge-info">No Enviado</span> {% endif %}</td>
-            <td><a href="{% url 'Panel:CandidatosEliminar' candidato.id %}" class="btn btn-danger"><i class="fal fa-trash"></i></a></td>
+            <td>
+              {% if candidato.curriculum %}
+                <a href="{{candidato.curriculum.url}}">Curriculum</a>
+              {% else %}
+                <span class="badge badge-info">No Enviado</span>
+              {% endif %}
+            </td>
+            <td>
+              <a href="" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Enviar mensaje en email">
+                <i class="fal fa-envelope"></i>
+              </a>
+              <a href="{% url 'Panel:CandidatosEliminar' candidato.id %}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar registro">
+                <i class="fal fa-trash"></i>
+              </a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
