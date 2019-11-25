@@ -15,17 +15,17 @@ nivel_estudios = [
 ]
 
 class Empleados(ModeloBase):
-    nombre = models.CharField('Nombre', max_length = 50, null = False, blank = False)
-    apellidos = models.CharField('Apellidos', max_length = 50, null = False, blank = False)
-    rfc = models.CharField('RFC', max_length = 13, null = False, blank = True)
-    imss = models.CharField('Número de seguro social', max_length = 11, null = False, blank = False)
-    nivel_estudios = models.CharField('Nivel de estudios', max_length = 15, null = False, blank = False, choices = nivel_estudios)
+    nombre = models.CharField('Nombre', max_length = 50)
+    apellidos = models.CharField('Apellidos', max_length = 50)
+    rfc = models.CharField('RFC', max_length = 13, blank = True)
+    imss = models.CharField('Número de seguro social', max_length = 11, blank = False)
+    nivel_estudios = models.CharField('Nivel de estudios', max_length = 15, choices = nivel_estudios)
     carrera = models.CharField('Carrera Estudiada',max_length = 50, null = True, blank = True)
-    direccion = models.CharField('Dirección', max_length = 100, null = True, blank = False)
-    salario = models.DecimalField('Salario (Mensual)', max_digits=6, decimal_places=2, null = False, blank = False, validators=[MinValueValidator(0)])
-    jornada = models.CharField('Jornada', max_length = 100, null = False, blank = False)
-    contrato = models.CharField('Contrato', max_length = 100, null = False, blank = False)
-    fecha_nacimiento = models.DateField(null = True, blank = False)
+    direccion = models.CharField('Dirección', max_length = 100, null = True)
+    salario = models.DecimalField('Salario (Mensual)', max_digits=6, decimal_places=2, validators=[MinValueValidator(0)])
+    jornada = models.CharField('Jornada', max_length = 100)
+    contrato = models.CharField('Contrato', max_length = 100)
+    fecha_nacimiento = models.DateField(null = True)
     fecha_ingreso = models.DateField()
     puesto = models.ForeignKey(AreasTrabajo,on_delete=models.CASCADE)
 

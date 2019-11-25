@@ -1,12 +1,31 @@
 from django.shortcuts import render,redirect
 from django.views.generic import ListView,DeleteView,CreateView,View
-from .models import *
+from .models import Candidatos
 from .forms import *
 from Modulos.Puestos.models import Puestos
 from django.urls import reverse_lazy
 from .resources import CandidatosResource
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import EmailMessage
+
+class PanelMessageCandidatos(View):
+    model = Candidatos
+    def get(self,request,mail,*args,**kwargs):
+        datos = {
+            'form': CorreoForm,
+            'mail': mail
+        }
+        return render(request, 'panel/Candidatos/formulario_correo.html',datos)
+
+    def post(self,request,*args,**kwargs):
+        form = CorreoForm(request.POST)
+        if form.is_valid():
+            destino = form.cleaned_data['destino']
+            email = EmailMessage('Subject', 'Body', to=[destino])
+            email.send()
+            return HttpResponseRedirect('/')
+        else:
+            return render(request, 'panel/Candidatos/formulario_correo.html')
 
 class PanelListCandidatos(ListView):
     model = Candidatos
@@ -48,20 +67,3 @@ def export_candidatos_xls(request):
     response = HttpResponse(dataset.xls, content_type='text/xls')
     response['Content-Disposition'] = 'attachment; filename="Candidatos.xls"'
     return response
-
-class PanelMessageCandidatos(View):
-    def get(self,request,*args,**kwargs):
-        datos = {
-            'form': CorreoForm
-        }
-        return render(request, 'panel/Candidatos/formulario_correo.html',datos)
-
-    def post(self,request,*args,**kwargs):
-        form = CorreoForm(request.POST)
-        if form.is_valid():
-            destino = form.cleaned_data['destino']
-            email = EmailMessage('Subject', 'Body', to=[destino])
-            email.send()
-            return HttpResponseRedirect('/')
-        else:
-            return render(request, 'panel/Candidatos/formulario_correo.html')

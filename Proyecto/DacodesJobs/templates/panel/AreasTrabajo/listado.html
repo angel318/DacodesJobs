@@ -39,11 +39,15 @@
               <img src="{{area.imagen_referencial.url}}" class="card-img-top img-fluid">
               <div class="card-body">
                 <h5 class="card-title">{{area.nombre}}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">{{area.descripcion|safe}}</p>
                 <div class="container">
                   <div class="row d-flex justify-content-between">
-                    <a href="{% url 'Panel:AreasActualizar' area.id %}" class="btn btn-success"><i class="fal fa-edit"></i></a>
-                    <a href="{% url 'Panel:AreasEliminar' area.id %}" class="btn btn-danger"><i class="fal fa-trash"></i></a>
+                    <a href="{% url 'Panel:AreasActualizar' area.id %}" class="btn btn-success">
+                      <i class="fal fa-edit"></i>
+                    </a>
+                    <a href="{% url 'Panel:AreasEliminar' area.id %}" class="btn btn-danger">
+                      <i class="fal fa-trash"></i>
+                    </a>
                   </div>
                 </div>
               </div>

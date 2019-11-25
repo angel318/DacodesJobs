@@ -58,7 +58,7 @@
               {% endif %}
             </td>
             <td>
-              <a href="" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Enviar mensaje en email">
+              <a href="{% url 'Panel:CandidatosMensaje' candidato.email %}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Enviar mensaje en email">
                 <i class="fal fa-envelope"></i>
               </a>
               <a href="{% url 'Panel:CandidatosEliminar' candidato.id %}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar registro">

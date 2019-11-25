@@ -11,7 +11,7 @@
 {% block card-header %}
   <div class="container-fluid">
     <div class="row d-flex justify-content-between">
-      <span><i class="fal fa-bars"></i> Formulario de Empleados </span>
+      <span><i class="fal fa-bars"></i> Formulario de mensajes </span>
       <a href="{% url 'Panel:EmpleadosCrear' %}" class="btn btn-light"><i class="fal fa-plus-circle"></i> Nuevo</a>
     </div>
   </div>
@@ -21,22 +21,24 @@
 <form method="post" enctype="multipart/form-data" >
   {% csrf_token %}
   <div class="form-row">
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6"><!-- COLUMNA 1-->
       <label>{{ form.asunto.label }}</label>
       {{ form.asunto }}
     </div>
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6"><!-- COLUMNA 2-->
       <label>{{ form.destino.label }}</label>
-      <input type="email" name="destino" class="form-control" required="" id="destino" value="aranda.117318@gmail.com" readonly>
+      <input type="email" name="destino"
+        class="form-control" required=""
+        id="destino" value="{{mail}}" readonly>
     </div>
-    <div class="form-group col-sm-12">
+    <div class="form-group col-sm-12"><!-- COLUMNA 3-->
       <label>{{ form.contenido.label }}</label>
         {{ form.contenido }}
     </div>
   </div>
   <div class="form-group row">
     <div class="container d-flex justify-content-end">
-      <button type="submit" class="btn btn-primary border-primary">Guardar Contenido</button>
+      <button type="submit" class="btn btn-primary border-primary">Enviar mensaje</button>
     </div>
   </div>
 </form>

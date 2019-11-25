@@ -30,7 +30,7 @@ urlpatterns = [
     path('Empleados/import/xls/', login_required(import_empleados_xls), name='import_empleados_xls'),
     #Candidatos
     path('Candidatos/',login_required(PanelListCandidatos.as_view()), name = 'CandidatosListar'),
-    path('Candidatos/Mensaje',login_required(PanelMessageCandidatos.as_view()), name = 'CandidatosListar'),
+    path('Candidatos/Mensaje/<str:mail>',login_required(PanelMessageCandidatos.as_view()), name = 'CandidatosMensaje'),
     path('Candidatos/Eliminar/<int:pk>',login_required(PanelDeleteCandidatos.as_view()), name = 'CandidatosEliminar'),
     path('Candidatos/export/xls/', login_required(export_candidatos_xls), name='export_candidatos_xls'),
     #Datos empresa

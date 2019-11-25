@@ -11,7 +11,7 @@ class Candidatos(ModeloBase):
     curriculum = models.FileField('Curriculum', null = True, blank = True , upload_to = 'Candidatos/')
 
     objects = models.Manager()
-    
+
     class Meta:
         verbose_name = 'Candidato'
         verbose_name_plural = 'Candidatos'
